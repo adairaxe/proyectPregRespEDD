@@ -9,29 +9,44 @@ import TDA.BinaryTree;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Stack;
 
 /**
  *
  * @author USER
  */
 public class Util {
-    public BinaryTree crearArbolPreguntas(String nameFileQuestion){
-        BinaryTree treeQuestions = new BinaryTree();
-        try(
-                FileReader reader = new FileReader(nameFileQuestion);
-                BufferedReader buff = new BufferedReader(reader);
-            )
-        {   
-           String pregunta;
-           while((pregunta = buff.readLine()) != null){
-               treeQuestions.setRootContent(pregunta);
-           }
-            
+    
+    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion){
         
+        try(    FileReader reader = new FileReader(nameFileQuestion);
+                BufferedReader buff = new BufferedReader(reader);   )
+        {   
+           Stack<BinaryTree<String>> stackTreeQuestions = new Stack<>(); 
+           String question;
+           while((question = buff.readLine()) != null){
+               stackTreeQuestions.add(new BinaryTree(question));
+           }
+           
+           return stackTreeQuestions;
+           
         }   catch (Exception ex) {
-            String message = ex.getMessage();
-            System.out.println(message);
+            System.out.println(ex.getMessage());
+            
+            return null;
+        }   
+    }
+    
+    public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
+        
+        while(stackTreeQuestions.size() > 1){
+            BinaryTree<String> treeUnder = stackTreeQuestions.pop();
+            BinaryTree<String> treeUp = stackTreeQuestions.pop();
+            treeUp.setLeft(treeUnder);
+            treeUp.setRight(treeUnder);
+            stackTreeQuestions.push(treeUp);
         }
-        return null;
+        
+        return stackTreeQuestions.pop(); 
     }
 }
