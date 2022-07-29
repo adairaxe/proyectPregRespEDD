@@ -1,0 +1,6 @@
+oso sí sí sí sí no no
+leon sí sí sí sí no no
+delfin sí no no no sí no
+avestruz no no no sí sí no
+leon sí sí sí sí no no
+perro sí no sí sí sí sí
