@@ -9,6 +9,9 @@ import TDA.BinaryTree;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -48,5 +51,51 @@ public class Util {
         }
         
         return stackTreeQuestions.pop(); 
+    }
+    
+    
+    public static String[] putSheets(BinaryTree<String> tree, String nameFileAnswers){
+        
+        try(    FileReader reader = new FileReader(nameFileAnswers);
+                BufferedReader buff = new BufferedReader(reader);   )
+        {   
+           String answer;
+           while((answer = buff.readLine()) != null){
+               String[] split = answer.split(" ");
+           }
+           
+        }   catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            
+        }
+        return null;
+    }
+    
+    
+    public static Queue<String> saveAnswers(String[] array){
+        
+        Queue<String> queueAnswers = new LinkedList();
+        for(int i=1 ; i < array.length ; i++)
+            queueAnswers.add(array[i]);
+        return queueAnswers;
+    }
+    
+    
+    public static void validateAndPut(BinaryTree<String> tree, Queue<String> queueAnswers, String animal){
+        
+        BinaryTree<String> tree2 = tree;
+        while(!queueAnswers.isEmpty() && tree2 != null){
+            String answer = queueAnswers.poll();
+            if(answer.equals("si")){
+                if(tree2.getLeft() == null){
+                    tree2 = tree2.getLeft();
+                }
+            }else{
+                if(tree2.getRight() == null)
+                    tree2 = tree2.getRight();
+            }
+        }
+        tree2.setRootContent(animal);
+        
     }
 }
