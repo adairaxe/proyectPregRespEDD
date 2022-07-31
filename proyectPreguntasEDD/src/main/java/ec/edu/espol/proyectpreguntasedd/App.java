@@ -8,9 +8,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 import model.Util;
+import static model.Util.createMapSheets;
 
 /**
  * JavaFX App
@@ -39,12 +43,16 @@ public class App extends Application {
 //        launch();
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
-        int i = 1;
-        for(String question : breadthTraversal){
-            System.out.println(question + " : "+ i);
-            i++;
-        }     
+        Map<String, ArrayList<String>> createMapSheets = Util.createMapSheets("respuestas.txt"); 
+        
+        for(String animal : createMapSheets.keySet()){
+            System.out.println(animal + " : " + createMapSheets.get(animal));
+        }
+        
+        for(String animal : createMapSheets.keySet()){
+            System.out.println(Util.insertOneSheet(BinaryTreeQuestion, createMapSheets.get(animal), animal));
+        }
+        
     }
 
 }

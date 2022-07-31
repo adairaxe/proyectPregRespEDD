@@ -11,13 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.TreeMap;
 
-/**
- *
- * @author USER
- */
 public class Util {
     
     public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion){
@@ -29,13 +27,11 @@ public class Util {
            String question;
            while((question = buff.readLine()) != null){
                stackTreeQuestions.add(new BinaryTree(question));
-           }
-           
+           }          
            return stackTreeQuestions;
            
         }   catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            
+            System.out.println(ex.getMessage()); 
             return null;
         }   
     }
@@ -49,53 +45,64 @@ public class Util {
             treeUp.setRight(treeUnder);
             stackTreeQuestions.push(treeUp);
         }
-        
         return stackTreeQuestions.pop(); 
     }
     
-    
-    public static String[] putSheets(BinaryTree<String> tree, String nameFileAnswers){
+    public static Map<String, ArrayList<String>> createMapSheets(String nameFileAnswers){
         
+        Map<String, ArrayList<String>> MapAnswers = new TreeMap();
         try(    FileReader reader = new FileReader(nameFileAnswers);
                 BufferedReader buff = new BufferedReader(reader);   )
         {   
            String answer;
            while((answer = buff.readLine()) != null){
-               String[] split = answer.split(" ");
+               
+                String[] array = answer.split(" ");
+                ArrayList<String> arrayAnswers = new ArrayList();
+                for(int i=1 ; i < array.length ; i++)
+                    arrayAnswers.add(array[i]);
+                MapAnswers.put(array[0], arrayAnswers);
            }
-           
         }   catch (Exception ex) {
             System.out.println(ex.getMessage());
             
         }
-        return null;
+        return MapAnswers;
     }
     
-    
-    public static Queue<String> saveAnswers(String[] array){
+    public static boolean insertOneSheet(BinaryTree<String> tree, ArrayList<String> arrayAnswers, String animal){
         
-        Queue<String> queueAnswers = new LinkedList();
-        for(int i=1 ; i < array.length ; i++)
-            queueAnswers.add(array[i]);
-        return queueAnswers;
-    }
-    
-    
-    public static void validateAndPut(BinaryTree<String> tree, Queue<String> queueAnswers, String animal){
-        
-        BinaryTree<String> tree2 = tree;
-        while(!queueAnswers.isEmpty() && tree2 != null){
-            String answer = queueAnswers.poll();
-            if(answer.equals("si")){
-                if(tree2.getLeft() == null){
-                    tree2 = tree2.getLeft();
-                }
+        System.out.println(arrayAnswers);
+        if(arrayAnswers.get(0).equals("si")){
+            if(tree.getLeft() == null){
+                BinaryTree<String> animalTree = new BinaryTree();
+                animalTree.setRootContent(animal);
+                tree.setLeft(animalTree);
+                return true;
             }else{
-                if(tree2.getRight() == null)
-                    tree2 = tree2.getRight();
+                if(arrayAnswers.isEmpty())
+                    System.out.println("Un animal ya existe");
+                else{
+                    arrayAnswers.remove(0);
+                    insertOneSheet(tree.getLeft(), arrayAnswers, animal);
+                }
+                return false;
+            }
+        }else{
+            if(tree.getRight() == null){
+                BinaryTree<String> animalTree = new BinaryTree();
+                animalTree.setRootContent(animal);
+                tree.setRight(animalTree);
+                return true;
+            }else{
+                if(arrayAnswers.isEmpty()){
+                    System.out.println("Un animal ya existe");
+                }else{
+                    arrayAnswers.remove(0);
+                    insertOneSheet(tree.getRight(), arrayAnswers, animal);
+                }          
+                return false;
             }
         }
-        tree2.setRootContent(animal);
-        
     }
 }
