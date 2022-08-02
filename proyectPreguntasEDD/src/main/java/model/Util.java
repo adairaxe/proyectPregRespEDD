@@ -108,4 +108,8 @@ public class Util {
     }
             return true;
         }
+     public static boolean isValidNumQuestion (int num,Stack<BinaryTree<String>> Questions ){
+        return num <= Questions.size();
+        
+    }
 }
