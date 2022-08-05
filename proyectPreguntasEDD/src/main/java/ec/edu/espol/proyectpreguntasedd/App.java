@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.Stack;
 import model.Util;
 import static model.Util.createMapSheets;
+import static model.arbolDecisiones.buildTreeDecisionxd;
+import model.nodoProyecto;
 
 /**
  * JavaFX App
@@ -42,9 +44,9 @@ public class App extends Application {
     public static void main(String[] args) {
 //        launch();
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
-        BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        Map<String, ArrayList<String>> createMapSheets = Util.createMapSheets("respuestas.txt"); 
-        
+        //BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
+        //Map<String, ArrayList<String>> createMapSheets = Util.createMapSheets("respuestas.txt"); 
+        /*
         for(String animal : createMapSheets.keySet()){
             System.out.println(animal + " : " + createMapSheets.get(animal));
         }
@@ -52,6 +54,11 @@ public class App extends Application {
         for(String animal : createMapSheets.keySet()){
             System.out.println(Util.insertOneSheet(BinaryTreeQuestion, createMapSheets.get(animal), animal));
         }
+        
+        System.out.println(BinaryTreeQuestion.countLevels());
+        */
+        
+        //buildTreeDecisionxd("preguntas.txt");
         
     }
 

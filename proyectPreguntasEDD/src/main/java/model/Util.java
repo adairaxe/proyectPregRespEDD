@@ -26,7 +26,8 @@ public class Util {
            Stack<BinaryTree<String>> stackTreeQuestions = new Stack<>(); 
            String question;
            while((question = buff.readLine()) != null){
-               stackTreeQuestions.add(new BinaryTree(question));
+               //stackTreeQuestions.add(new BinaryTree(question));
+               System.out.println(question);
            }          
            return stackTreeQuestions;
            
@@ -74,42 +75,47 @@ public class Util {
         
         System.out.println(arrayAnswers);
         while (!arrayAnswers.isEmpty()){
-        if(arrayAnswers.get(0).equals("si")){
-            if(tree.getLeft() == null){
-                BinaryTree<String> animalTree = new BinaryTree();
-                animalTree.setRootContent(animal);
-                tree.setLeft(animalTree);
-                return true;
-            }else{
-                if(arrayAnswers.isEmpty())
-                    System.out.println("Un animal ya existe");
-                else{
-                    arrayAnswers.remove(0);
-                    insertOneSheet(tree.getLeft(), arrayAnswers, animal);
+            if (arrayAnswers.get(0).equals("si")) {
+                if (tree.getLeft() == null) {
+                    BinaryTree<String> animalTree = new BinaryTree();
+                    animalTree.setRootContent(animal);
+                    tree.setLeft(animalTree);
+                    return true;
+                } else {
+                    if (arrayAnswers.isEmpty()) {
+                        System.out.println("Un animal ya existe");
+                    } else {
+                        arrayAnswers.remove(0);
+                        insertOneSheet(tree.getLeft(), arrayAnswers, animal);
+                    }
+                    return false;
                 }
-                return false;
+            } else if (arrayAnswers.get(0).equals("no")) {
+                {
+                    if (tree.getRight() == null) {
+                        BinaryTree<String> animalTree = new BinaryTree();
+                        animalTree.setRootContent(animal);
+                        tree.setRight(animalTree);
+                        return true;
+                    } else {
+                        if (arrayAnswers.isEmpty()) {
+                            System.out.println("Un animal ya existe");
+                        } else {
+                            arrayAnswers.remove(0);
+                            insertOneSheet(tree.getRight(), arrayAnswers, animal);
+                        }
+                        return false;
+                    }
+                }
             }
-        }else if(arrayAnswers.get(0).equals("no")){{
-            if(tree.getRight() == null){
-                BinaryTree<String> animalTree = new BinaryTree();
-                animalTree.setRootContent(animal);
-                tree.setRight(animalTree);
-                return true;
-            }else{
-                if(arrayAnswers.isEmpty()){
-                    System.out.println("Un animal ya existe");
-                }else{
-                    arrayAnswers.remove(0);
-                    insertOneSheet(tree.getRight(), arrayAnswers, animal);
-                }          
-                return false;
-            }
+
         }
+        return true;
     }
-            return true;
-        }
-     public static boolean isValidNumQuestion (int num,Stack<BinaryTree<String>> Questions ){
+    
+
+    public static boolean isValidNumQuestion(int num, Stack<BinaryTree<String>> Questions) {
         return num <= Questions.size();
-        
+
     }
 }
