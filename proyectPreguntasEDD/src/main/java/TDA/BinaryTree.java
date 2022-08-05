@@ -251,25 +251,25 @@ public class BinaryTree<E> {
         return total;
     }
     
-    public static BinaryTree arrayTree(int[] arreglo){
-        if(arreglo.length == 1)
-            return new BinaryTree(arreglo[0]);   
-        else{
-            if(sumArreglos(arreglo)/arreglo.length == 1)
-                return arrayTree(arreglo, new BinaryTree(1));
-            if(sumArreglos(arreglo)/arreglo.length == 0)
-                return arrayTree(arreglo, new BinaryTree(0));
-            else 
-                return arrayTree(arreglo, new BinaryTree(-1));
-        }
-    }
-    
-    
-    private static BinaryTree arrayTree(int[] arreglo, BinaryTree arbol){
-
-        
-        return null;    
-    }
+//    public static BinaryTree arrayTree(int[] arreglo){
+//        if(arreglo.length == 1)
+//            return new BinaryTree(arreglo[0]);   
+//        else{
+//            if(sumArreglos(arreglo)/arreglo.length == 1)
+//                return arrayTree(arreglo, new BinaryTree(1));
+//            if(sumArreglos(arreglo)/arreglo.length == 0)
+//                return arrayTree(arreglo, new BinaryTree(0));
+//            else 
+//                return arrayTree(arreglo, new BinaryTree(-1));
+//        }
+//    }
+//    
+//    
+//    private static BinaryTree arrayTree(int[] arreglo, BinaryTree arbol){
+//
+//        
+//        return null;    
+//    }
     
 
     public static int resultArbolExpresion(BinaryTree<String> arbolExpresion){
@@ -338,6 +338,9 @@ public class BinaryTree<E> {
         return numlevels;
     }
     
+    public boolean isLeaf() {
+        return (this.getLeft() == null && this.getRight() == null);
+    }
     
     
 }

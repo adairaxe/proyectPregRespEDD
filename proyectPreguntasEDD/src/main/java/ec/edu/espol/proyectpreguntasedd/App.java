@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import model.Util;
@@ -43,23 +44,24 @@ public class App extends Application {
 
     public static void main(String[] args) {
 //        launch();
+
+        // ARBOL CARGADO CON PREGUNTAS
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
-        //BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        //Map<String, ArrayList<String>> createMapSheets = Util.createMapSheets("respuestas.txt"); 
-        /*
+        BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
+        
+        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
         for(String animal : createMapSheets.keySet()){
             System.out.println(animal + " : " + createMapSheets.get(animal));
         }
         
-        for(String animal : createMapSheets.keySet()){
-            System.out.println(Util.insertOneSheet(BinaryTreeQuestion, createMapSheets.get(animal), animal));
+        Queue<String> answerOso = createMapSheets.get("oso");
+        
+        Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("oso"), answerOso);
+        LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
+        for(String s : breadthTraversal){
+            System.out.println(s);
         }
-        
-        System.out.println(BinaryTreeQuestion.countLevels());
-        */
-        
-        //buildTreeDecisionxd("preguntas.txt");
-        
+
     }
 
 }
