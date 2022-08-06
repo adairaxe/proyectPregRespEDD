@@ -80,7 +80,7 @@ public class Util {
         String answer = answers.poll();
         //BinaryTree<String> 
         if(answers.isEmpty()){
-            System.out.println("ES hoja");
+            //System.out.println("ES hoja");
             System.out.println(answer);
             if(answer.equals("si")){
                 System.out.println("Izquierdo");
@@ -93,7 +93,7 @@ public class Util {
             return true;
         }
         else if (!answers.isEmpty()) {
-            System.out.println("No es hoja");
+            ///System.out.println("No es hoja");
             System.out.println(answer);
             if(answer.equals("si"))
                 return chargeAnswers(treeQuestion.getLeft(), animal, answers);
@@ -114,10 +114,13 @@ public class Util {
         System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
         System.out.println ("Escribe el número de pregunas que deseas relizar: ");
         int preguntas;
-        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        Scanner entradaEscaner = new Scanner (System.in); 
 
         preguntas = entradaEscaner.nextInt();
         return preguntas;
+    }
+    public static void printSheetAnimal(BinaryTree<String> treeQuestion,Queue<String> answers ){
+    
     }
     public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
         animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));

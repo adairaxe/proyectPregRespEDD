@@ -358,5 +358,28 @@ public class BinaryTree<E> {
        return newTree;
     
     }
+    public LinkedList<E> GetTreeSheets() {
+            
+        LinkedList<E> listSheet = new LinkedList<>();
+        if (!this.isEmpty() && this.getRight() == null && this.getLeft() == null ) {
+            listSheet.add(this.getRootContent());
+        }
+        if (this.getLeft() != null) {
+            this.getLeft().GetTreeSheets();
+        } 
+        if (this.getRight() != null) {
+            this.getRight().GetTreeSheets();
+        }
+        listSheet.toString();
+        return listSheet;
+    }
+    public void printSheets (){
+        LinkedList<E> sheets = new LinkedList<>();
+        sheets = this.GetTreeSheets();
+        for (E e : sheets){
+            System.out.println (e);
+        }
+        sheets.toString();
+    }
     
 }
