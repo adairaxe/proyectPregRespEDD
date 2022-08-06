@@ -75,40 +75,28 @@ public class Util {
     }
     
     
-    public static boolean chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
-        System.out.println(answers.size());
+    private static void chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
         String answer = answers.poll();
-        //BinaryTree<String> 
         if(answers.isEmpty()){
-            System.out.println("ES hoja");
-            System.out.println(answer);
-            if(answer.equals("si")){
-                System.out.println("Izquierdo");
-                treeQuestion.setLeft(animal);
-            }
-            else if (answer.equals("no")){
-                System.out.println("derecho");
-                treeQuestion.setRight(animal);
-            }
-            return true;
-        }
-        else if (!answers.isEmpty()) {
-            System.out.println("No es hoja");
-            System.out.println(answer);
             if(answer.equals("si"))
-                return chargeAnswers(treeQuestion.getLeft(), animal, answers);
-            else if (answer.equals("no"))
-                return chargeAnswers(treeQuestion.getRight(), animal, answers);
-            //return false;
+                treeQuestion.setLeft(animal);
+            else
+                treeQuestion.setRight(animal);
         }
-        return false;
+        else{
+            if(answer.equals("si"))
+                chargeAnswers(treeQuestion.getLeft(), animal, answers);
+            else
+                chargeAnswers(treeQuestion.getRight(), animal, answers);
+        }
     }
     
     
     public static boolean isValidNumQuestion(int num, Stack<BinaryTree<String>> Questions) {
         return num <= Questions.size();
-
     }
+    
+    
     public static int askNumQuestionsUser (int numPreguntas)
     {
         System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
@@ -119,8 +107,10 @@ public class Util {
         preguntas = entradaEscaner.nextInt();
         return preguntas;
     }
+    
+    
     public static boolean chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
-        animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
+        animals.forEach((k,v)->chargeAnswers(treeQuestion, new BinaryTree<String>(k), v));
         return true;
     }
     
