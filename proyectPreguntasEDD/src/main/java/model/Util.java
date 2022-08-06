@@ -72,21 +72,32 @@ public class Util {
     }
     
     
-    public static void chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
+    public static boolean chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
+        System.out.println(answers.size());
+        String answer = answers.poll();
         if(treeQuestion.isLeaf()){
-            if(answers.poll().equals("si"))
+            System.out.println("ES hoja");
+            System.out.println(answer);
+            if(answer.equals("si")){
+                System.out.println("Izquierdo");
                 treeQuestion.setLeft(animal);
-            else
+            }
+            else{
+                System.out.println("derecho");
                 treeQuestion.setRight(animal);
-            return;
+            }
+            return true;
         }
         else{
-            String answer = answers.poll();
+            System.out.println("No es hoja");
+            System.out.println(answer);
             if(answer.equals("si"))
                 chargeAnswers(treeQuestion.getLeft(), animal, answers);
             else
                 chargeAnswers(treeQuestion.getRight(), animal, answers);
+            return false;
         }
+        
     }
     
     

@@ -55,8 +55,7 @@ public class App extends Application {
         }
         
         Queue<String> answerOso = createMapSheets.get("oso");
-        
-        Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("oso"), answerOso);
+        System.out.println(Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("oso"), answerOso));
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
         for(String s : breadthTraversal){
             System.out.println(s);
