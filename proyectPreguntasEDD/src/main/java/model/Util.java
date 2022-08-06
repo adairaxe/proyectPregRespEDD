@@ -39,15 +39,17 @@ public class Util {
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){
-            BinaryTree<String> treeUnder = new BinaryTree (stackTreeQuestions.pop().getRootContent());
+            BinaryTree<String> treeUnder = stackTreeQuestions.pop();
             BinaryTree<String> treeUp = new BinaryTree (stackTreeQuestions.pop().getRootContent());
-            treeUp.setLeft(treeUnder);
-            treeUp.setRight(treeUnder);
+            treeUp.setLeft(treeUnder.newcopyBinaryTree());
+            treeUp.setRight(treeUnder.newcopyBinaryTree());
+            /*treeUp.setLeft(new BinaryTree<String> (treeUnder.getRootContent()));
+            treeUp.setRight(new BinaryTree<String> (treeUnder.getRootContent()));*/
             stackTreeQuestions.push(treeUp);
         }
         return stackTreeQuestions.pop(); 
     }
-    
+
     
     public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers){
         

@@ -341,6 +341,22 @@ public class BinaryTree<E> {
     public boolean isLeaf() {
         return (this.getLeft() == null && this.getRight() == null);
     }
+    public  BinaryTree<E> newcopyBinaryTree (){
+        BinaryTree<E> newTree = new BinaryTree<> ();
     
+      //LinkedList<E> traversal = new LinkedList<>();
+        if (!this.isEmpty()) {
+            //traversal.add(this.getRootContent());
+            newTree.setRootContent(this.getRootContent());
+        }
+        if (this.getLeft() != null) {
+            newTree.setLeft(this.getLeft().newcopyBinaryTree());
+        }
+        if (this.getRight() != null) {
+            newTree.setRight(this.getRight().newcopyBinaryTree());
+        }
+       return newTree;
+    
+    }
     
 }
