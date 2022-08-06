@@ -119,9 +119,9 @@ public class Util {
         preguntas = entradaEscaner.nextInt();
         return preguntas;
     }
-    public static boolean chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
+    public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
         animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
-        return true;
+        //return true;
     }
     
 }
