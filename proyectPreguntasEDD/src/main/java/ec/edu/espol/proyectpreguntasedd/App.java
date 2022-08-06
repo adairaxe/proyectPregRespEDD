@@ -48,20 +48,32 @@ public class App extends Application {
         // ARBOL CARGADO CON PREGUNTAS
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        
+        LinkedList<String> preorder = BinaryTreeQuestion.preOrderTraversalIterative();
         Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
         for(String animal : createMapSheets.keySet()){
             System.out.println(animal + " : " + createMapSheets.get(animal));
         }
-        
+        //BinaryTreeQuestion.getLeft().getLeft().setLeft(new BinaryTree("animal"));
         Queue<String> answerOso = createMapSheets.get("oso");
         System.out.println(Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("oso"), answerOso));
+        BinaryTreeQuestion.getLeft().getLeft().setRight(new BinaryTree("animal"));
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
-        LinkedList<String> preorder = BinaryTreeQuestion.preOrderTraversalIterative();
+        
+        /*Queue<String> answerLeon = createMapSheets.get("avestruz");
+        System.out.println(Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("avestruz"), answerLeon));
+        LinkedList<String> breadthTraversalLeon = BinaryTreeQuestion.breadthTraversal();*/
+        
+        for(String s : breadthTraversal){
+            System.out.println(s);
+        }
+       /*for(String s : breadthTraversalLeon){
+            System.out.println(s);
+        }*/
         for(String s : preorder){
             System.out.println(s);
         }
-
+        
+       
     }
 
 }

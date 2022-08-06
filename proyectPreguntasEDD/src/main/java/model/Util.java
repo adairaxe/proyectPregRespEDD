@@ -39,8 +39,8 @@ public class Util {
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){
-            BinaryTree<String> treeUnder = stackTreeQuestions.pop();
-            BinaryTree<String> treeUp = stackTreeQuestions.pop();
+            BinaryTree<String> treeUnder = new BinaryTree (stackTreeQuestions.pop().getRootContent());
+            BinaryTree<String> treeUp = new BinaryTree (stackTreeQuestions.pop().getRootContent());
             treeUp.setLeft(treeUnder);
             treeUp.setRight(treeUnder);
             stackTreeQuestions.push(treeUp);
@@ -75,6 +75,7 @@ public class Util {
     public static boolean chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
         System.out.println(answers.size());
         String answer = answers.poll();
+        //BinaryTree<String> 
         if(treeQuestion.isLeaf()){
             System.out.println("ES hoja");
             System.out.println(answer);
@@ -88,16 +89,16 @@ public class Util {
             }
             return true;
         }
-        else {
+        else if (!treeQuestion.isLeaf()) {
             System.out.println("No es hoja");
             System.out.println(answer);
             if(answer.equals("si"))
-                chargeAnswers(treeQuestion.getLeft(), animal, answers);
+                return chargeAnswers(treeQuestion.getLeft(), animal, answers);
             else if (answer.equals("no"))
-                chargeAnswers(treeQuestion.getRight(), animal, answers);
-            return false;
+                return chargeAnswers(treeQuestion.getRight(), animal, answers);
+            //return false;
         }
-        
+        return false;
     }
     
     
