@@ -51,21 +51,21 @@ public class App extends Application {
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
         
         Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
-        for(String animal : createMapSheets.keySet()){
-            System.out.println(animal + " : " + createMapSheets.get(animal));
-        }
+//        for(String animal : createMapSheets.keySet()){
+//            System.out.println(animal + " : " + createMapSheets.get(animal));
+//        }
         
         LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
         
-        
-        chargeAnimals(BinaryTreeQuestion,createMapSheets);
+//        
+        Util.chargeAnimals(BinaryTreeQuestion,createMapSheets);
         
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
         
-        
-       for(String s : breadthTraversalQuestion){
-            System.out.println(s);
-        }
+//        
+//       for(String s : breadthTraversalQuestion){
+//            System.out.println(s);
+//        }
         for(String s : breadthTraversal){
             System.out.println(s);
         }
