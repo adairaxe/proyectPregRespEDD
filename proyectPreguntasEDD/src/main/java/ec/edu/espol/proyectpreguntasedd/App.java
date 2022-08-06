@@ -15,6 +15,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import model.Util;
+import static model.Util.chargeAnimals;
 import static model.Util.createMapSheets;
 import static model.arbolDecisiones.buildTreeDecisionxd;
 import model.nodoProyecto;
@@ -54,23 +55,18 @@ public class App extends Application {
             System.out.println(animal + " : " + createMapSheets.get(animal));
         }
         
-        LinkedList<String> breadthTraversalLeon = BinaryTreeQuestion.breadthTraversal();
-        Queue<String> answerOso = createMapSheets.get("oso");
-        System.out.println(Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("oso"), answerOso));
-        BinaryTreeQuestion.getLeft().getLeft().setRight(new BinaryTree("animal"));
+        LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
+        
+        
+        chargeAnimals(BinaryTreeQuestion,createMapSheets);
+        
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
         
-        Queue<String> answerLeon = createMapSheets.get("avestruz");
-        System.out.println(Util.chargeAnswers(BinaryTreeQuestion, new BinaryTree("avestruz"), answerLeon));
-        LinkedList<String> preorder = BinaryTreeQuestion.breadthTraversal();
         
+       for(String s : breadthTraversalQuestion){
+            System.out.println(s);
+        }
         for(String s : breadthTraversal){
-            System.out.println(s);
-        }
-       for(String s : breadthTraversalLeon){
-            System.out.println(s);
-        }
-        for(String s : preorder){
             System.out.println(s);
         }
         

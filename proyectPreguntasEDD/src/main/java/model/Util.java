@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
 
@@ -78,7 +79,7 @@ public class Util {
         System.out.println(answers.size());
         String answer = answers.poll();
         //BinaryTree<String> 
-        if(treeQuestion.isLeaf()){
+        if(answers.isEmpty()){
             System.out.println("ES hoja");
             System.out.println(answer);
             if(answer.equals("si")){
@@ -91,7 +92,7 @@ public class Util {
             }
             return true;
         }
-        else if (!treeQuestion.isLeaf()) {
+        else if (!answers.isEmpty()) {
             System.out.println("No es hoja");
             System.out.println(answer);
             if(answer.equals("si"))
@@ -108,4 +109,19 @@ public class Util {
         return num <= Questions.size();
 
     }
+    public static int askNumQuestionsUser (int numPreguntas)
+    {
+        System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
+        System.out.println ("Escribe el número de pregunas que deseas relizar: ");
+        int preguntas;
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+
+        preguntas = entradaEscaner.nextInt();
+        return preguntas;
+    }
+    public static boolean chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
+        animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
+        return true;
+    }
+    
 }
