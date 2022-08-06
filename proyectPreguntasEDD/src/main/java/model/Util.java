@@ -82,18 +82,18 @@ public class Util {
                 System.out.println("Izquierdo");
                 treeQuestion.setLeft(animal);
             }
-            else{
+            else if (answer.equals("no")){
                 System.out.println("derecho");
                 treeQuestion.setRight(animal);
             }
             return true;
         }
-        else{
+        else {
             System.out.println("No es hoja");
             System.out.println(answer);
             if(answer.equals("si"))
                 chargeAnswers(treeQuestion.getLeft(), animal, answers);
-            else
+            else if (answer.equals("no"))
                 chargeAnswers(treeQuestion.getRight(), animal, answers);
             return false;
         }
