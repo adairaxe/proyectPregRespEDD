@@ -116,7 +116,7 @@ public class Util {
         System.out.println ("Escribe el número de pregunas que deseas relizar: ");
         int preguntas;
         Scanner entradaEscaner = new Scanner (System.in); 
-
+        
         preguntas = entradaEscaner.nextInt();
         return preguntas;
     }
@@ -142,9 +142,10 @@ public class Util {
         respuesta = entradaEscaner.nextLine();
         return respuesta;
     }
-    public static void playGame (BinaryTree<String> treeQuestion, int numQuestions){
+    public static void playGame (BinaryTree<String> treeQuestion){
         
         System.out.println ("Bienvenido, ¡vamos a adivinar el animal que piensas! ");
+        int numQuestions = askNumQuestionsUser(treeQuestion.randomCountTreeComplete());
         System.out.println ("Has seleccionado " + numQuestions + " preguntas");
         int cont = 1;
         String respuesta;

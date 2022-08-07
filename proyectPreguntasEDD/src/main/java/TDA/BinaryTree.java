@@ -337,11 +337,12 @@ public class BinaryTree<E> {
         }
         return numlevels;
     }
-    public int randomCountTreeBalanced (){
+    public int randomCountTreeComplete (){
         //cómo es un árbol completo con las preguntas puedo conocer con el número de hojas
+        // este método sólo sirve en árboles completos
         int numLevels;
-        // 1 + 2 + 4 + 8 +16 + 32
-        // 1 + 2 + 3 + 4 + 5
+        // 1 + 2 + 4 + 8 +16 + 32 hojas 
+        // 1 + 2 + 3 + 4 + 5 niveles
         numLevels = log (this.numSheets()+1,2).intValue();
         return numLevels;
     }

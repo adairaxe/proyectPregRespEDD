@@ -1,3 +1,5 @@
-¿es este animal un mamifero?
-¿es este animal un carnivoro?
-¿se para en cuatro patas?
+¿Es este animal un mamifero?
+¿Es este animal un carnivoro?
+¿Se para en cuatro patas?
+¿Es este un animal doméstico?
+¿Es este un animal acuático?

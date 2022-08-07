@@ -51,7 +51,7 @@ public class App extends Application {
         // ARBOL CARGADO CON PREGUNTAS
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        System.out.println(BinaryTreeQuestion.randomCountTreeBalanced());
+        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
 //        for(String animal : createMapSheets.keySet()){
 //            System.out.println(animal + " : " + createMapSheets.get(animal));
@@ -71,11 +71,9 @@ public class App extends Application {
         for(String s : breadthTraversal){
             System.out.println(s);
         }
-        System.out.println(BinaryTreeQuestion.randomCountTreeBalanced());
+        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         BinaryTreeQuestion.printSheets();
-        Stack<BinaryTree<String>> createStackQuestions2 = Util.createStackQuestions("preguntas.txt");
-        int num = askNumQuestionsUser(createStackQuestions2.size());
-        playGame (BinaryTreeQuestion,num);
+        playGame (BinaryTreeQuestion);
     }
 
 }
