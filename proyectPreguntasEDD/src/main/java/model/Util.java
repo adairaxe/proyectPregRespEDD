@@ -247,6 +247,7 @@ public class Util {
                     treeTemp = treeTemp.getRight();
             }else{
                 System.out.println ("Ingresa una respuesta válida, minúscula sin espacios, gracias");
+                cont--;
             }
         }
         if (numQuestions == 0)
