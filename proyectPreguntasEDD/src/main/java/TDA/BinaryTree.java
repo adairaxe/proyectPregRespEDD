@@ -337,6 +337,32 @@ public class BinaryTree<E> {
         }
         return numlevels;
     }
+    public int randomCountTreeBalanced (){
+        //cómo es un árbol completo con las preguntas puedo conocer con el número de hojas
+        int numLevels;
+        // 1 + 2 + 4 + 8 +16 + 32
+        // 1 + 2 + 3 + 4 + 5
+        numLevels = log (this.numSheets()+1,2).intValue();
+        return numLevels;
+    }
+    private static Double log(int num, int base) {
+      return (Math.log10(num) / Math.log10(base));
+   }
+    public int numSheets (){
+        int size;
+        LinkedList<E> traversal = new LinkedList<>();
+        if (!this.isEmpty()) {
+            traversal.add(this.getRootContent());
+        }
+        if (this.getLeft() != null) {
+            traversal.addAll(this.getLeft().preOrderTraversalRecursive());
+        }
+        if (this.getRight() != null) {
+            traversal.addAll(this.getRight().preOrderTraversalRecursive());
+        }
+       
+        return traversal.size();
+    }
     
     public boolean isLeaf() {
         return (this.getLeft() == null && this.getRight() == null);
