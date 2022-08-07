@@ -120,8 +120,15 @@ public class Util {
         preguntas = entradaEscaner.nextInt();
         return preguntas;
     }
-    public static void printSheetAnimal(BinaryTree<String> treeQuestion,Queue<String> answers ){
-    
+    public static void printSheetAnimal(BinaryTree<String> treeQuestion){
+       
+        if (treeQuestion== null)
+            System.out.println("¡Lo sentimos!, todavía no conocemos a ese animal.");
+        else
+            System.out.println("Tu animal es: " + treeQuestion.getRootContent());  
+        
+    }
+    public static void printAnimalsTree (){
     }
     public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
         animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
@@ -162,10 +169,13 @@ public class Util {
                 else
                     treeTemp = treeTemp.getRight();
             }else{
-                System.out.println ("Ingresa una respeusta válida, minúscula sin espacios, gracias");
+                System.out.println ("Ingresa una respuesta válida, minúscula sin espacios, gracias");
             }
         }
-        System.out.println ("Tu animal es un " + treeTemp.getRootContent());
+        if (numQuestions == 0)
+            printSheetAnimal(treeTemp);
+        else
+            printSheetAnimal(treeTemp);
     }
     public static String[] separarCadena (String cadena){
         return cadena.split(" ");

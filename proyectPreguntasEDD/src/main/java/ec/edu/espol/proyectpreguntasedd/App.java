@@ -71,9 +71,11 @@ public class App extends Application {
         for(String s : breadthTraversal){
             System.out.println(s);
         }
+        System.out.println(BinaryTreeQuestion.GetTreeSheets());
         System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         BinaryTreeQuestion.printSheets();
         playGame (BinaryTreeQuestion);
+        
     }
 
 }

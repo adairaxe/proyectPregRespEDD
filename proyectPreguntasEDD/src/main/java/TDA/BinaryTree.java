@@ -388,16 +388,17 @@ public class BinaryTree<E> {
     public LinkedList<E> GetTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
-        if (!this.isEmpty() && this.getRight() == null && this.getLeft() == null ) {
-            listSheet.add(this.getRootContent());
-        }
+        
         if (this.getLeft() != null) {
             this.getLeft().GetTreeSheets();
         } 
         if (this.getRight() != null) {
             this.getRight().GetTreeSheets();
         }
-        listSheet.toString();
+        if (!this.isEmpty() && this.getRight() == null && this.getLeft() == null ) {
+            listSheet.add(this.getRootContent());
+        }
+        //listSheet.toString();
         return listSheet;
     }
     public void printSheets (){
