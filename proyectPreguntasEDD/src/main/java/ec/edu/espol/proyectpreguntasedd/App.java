@@ -15,8 +15,10 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import model.Util;
+import static model.Util.askNumQuestionsUser;
 import static model.Util.chargeAnimals;
 import static model.Util.createMapSheets;
+import static model.Util.playGame;
 import static model.arbolDecisiones.buildTreeDecisionxd;
 import model.nodoProyecto;
 
@@ -71,7 +73,9 @@ public class App extends Application {
         }
         System.out.println(BinaryTreeQuestion.countLevels());
         BinaryTreeQuestion.printSheets();
-       
+        Stack<BinaryTree<String>> createStackQuestions2 = Util.createStackQuestions("preguntas.txt");
+        int num = askNumQuestionsUser(createStackQuestions2.size());
+        playGame (BinaryTreeQuestion,num);
     }
 
 }

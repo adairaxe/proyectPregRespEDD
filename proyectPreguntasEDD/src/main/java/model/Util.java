@@ -109,6 +109,7 @@ public class Util {
         return num <= Questions.size();
 
     }
+    //hacer un stack.size();
     public static int askNumQuestionsUser (int numPreguntas)
     {
         System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
@@ -126,5 +127,46 @@ public class Util {
         animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
         //return true;
     }
-    
+    public static boolean verificarRespuesta (String respuesta){
+        if (respuesta.toLowerCase().equals("si")||respuesta.toLowerCase().equals("no"))
+        return true;
+        else 
+        return false;
+    }
+ 
+    public static String ingresarRespuesta (String pregunta){
+        String respuesta;
+        System.out.println (pregunta + ": " );
+        Scanner entradaEscaner = new Scanner (System.in); 
+        
+        respuesta = entradaEscaner.nextLine();
+        return respuesta;
+    }
+    public static void playGame (BinaryTree<String> treeQuestion, int numQuestions){
+        
+        System.out.println ("Bienvenido, ¡vamos a adivinar el animal que piensas! ");
+        System.out.println ("Has seleccionado " + numQuestions + " preguntas");
+        int cont = 1;
+        String respuesta;
+        BinaryTree <String> treeTemp = new BinaryTree<>();
+        treeTemp = treeQuestion;
+        while (numQuestions > 0){
+            respuesta = ingresarRespuesta(cont + treeTemp.getRootContent());
+            cont++;
+            numQuestions--;
+            if (verificarRespuesta(respuesta)){
+                
+                if (respuesta.equals("si"))
+                    treeTemp = treeTemp.getLeft();
+                else
+                    treeTemp = treeTemp.getRight();
+            }else{
+                System.out.println ("Ingresa una respeusta válida, minúscula sin espacios, gracias");
+            }
+        }
+        System.out.println ("Tu animal es un " + treeTemp.getRootContent());
+    }
+    public static String[] separarCadena (String cadena){
+        return cadena.split(" ");
+    }
 }
