@@ -396,8 +396,8 @@ public class BinaryTree<E> {
     
     }
     
-    
-    public LinkedList<E> GetTreeSheets() {
+            
+     public LinkedList<E> GetTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
         Stack<BinaryTree>stackTree = new Stack <>();
