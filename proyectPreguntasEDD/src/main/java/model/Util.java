@@ -190,12 +190,16 @@ public class Util {
     
     public static int askNumQuestionsUser (int numPreguntas)
     {
-        Integer preguntas;
-        Scanner entradaEscaner = new Scanner (System.in); 
+        Integer preguntas =numPreguntas + 1;
+        //Scanner entradaEscaner = new Scanner (System.in); 
         do{
+        Scanner entradaEscaner = new Scanner (System.in); 
         System.out.println ("Puedes seleccionar hasta " + numPreguntas + " preguntas.");
         System.out.println ("Escribe el número de pregunas que deseas relizar: ");
-        preguntas = entradaEscaner.nextInt();
+        if (entradaEscaner.hasNextInt())
+            preguntas = entradaEscaner.nextInt();
+       
+             
         }while (preguntas > numPreguntas);
         return preguntas;
     }
