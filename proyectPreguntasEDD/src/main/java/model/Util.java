@@ -7,6 +7,7 @@ package model;
 
 import TDA.BinaryTree;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -37,8 +38,34 @@ public class Util {
             return null;
         }   
     }
+    /*
+    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion, int countAnswers){
+
+        try(    FileReader reader = new FileReader(nameFileQuestion);
+                BufferedReader buff = new BufferedReader(reader);   )
+        {   
+           Stack<BinaryTree<String>> stackTreeQuestions = new Stack<>(); 
+           String question;
+           int num=0;
+           while((question = buff.readLine()) != null && num<countAnswers){
+               stackTreeQuestions.add(new BinaryTree(question));
+           }          
+           return stackTreeQuestions;
+           
+        }   catch (Exception ex) {
+            System.out.println(ex.getMessage()); 
+            return null;
+        }   
+    }
     
+    */
     
+    public static void randomQuestion(String nameFileQuestion){
+        Stack<BinaryTree<String>> preguntas=createStackQuestions(nameFileQuestion);
+        File archivo=new File(nameFileQuestion);
+        System.out.println(archivo.delete());
+    
+    }
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){
@@ -115,6 +142,29 @@ public class Util {
         
         return num <= Questions.size();
     }
+    
+    public static boolean isQuestion(String texto, String pregunta){
+         Stack<BinaryTree<String>> s=createStackQuestions("preguntas.txt");
+         while(!s.isEmpty()){
+             if(s.pop().getRootContent().equals(pregunta)){
+                 return true;
+             }
+         }
+         return false;
+    }
+    
+    public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,String archivo){
+        LinkedList<BinaryTree<String>> childrenNodes=new LinkedList<>();
+        LinkedList<BinaryTree<String>> nodesTree=BinaryTreeQuestion.preOrderTraversalNodesR();
+        for(BinaryTree<String> node : nodesTree){
+            if(!isQuestion(archivo,node.getRootContent())){
+                childrenNodes.add(node);
+            }
+        }
+        return childrenNodes;
+    }
+    
+    
     
     
     public static int askNumQuestionsUser (int numPreguntas)

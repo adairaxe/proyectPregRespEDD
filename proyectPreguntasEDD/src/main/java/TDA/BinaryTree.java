@@ -74,6 +74,19 @@ public class BinaryTree<E> {
         }
         return traversal;
     }
+    public LinkedList<BinaryTree<E>> preOrderTraversalNodesR() {
+        LinkedList<BinaryTree<E>> traversal = new LinkedList<>();
+        if (!this.isEmpty()) {
+            traversal.add(this);
+        }
+        if (this.getLeft() != null) {
+            traversal.addAll(this.getLeft().preOrderTraversalNodesR());
+        }
+        if (this.getRight() != null) {
+            traversal.addAll(this.getRight().preOrderTraversalNodesR());
+        }
+        return traversal;
+    }
     
     public LinkedList<E> inOrderTraversalRecursive() {
         LinkedList<E> traversal = new LinkedList<>();

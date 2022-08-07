@@ -19,8 +19,7 @@ import static model.Util.askNumQuestionsUser;
 import static model.Util.chargeAnimals;
 import static model.Util.createMapSheets;
 import static model.Util.playGame;
-import static model.arbolDecisiones.buildTreeDecisionxd;
-import model.nodoProyecto;
+
 
 /**
  * JavaFX App
@@ -59,17 +58,24 @@ public class App extends Application {
         Util.chargeAnimals(BinaryTreeQuestion,createMapSheets);
         
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
-        
+        /*
         for(String s : breadthTraversal){
             System.out.println(s);
         }
-
-        System.out.println(BinaryTreeQuestion.GetTreeSheets());
-        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
-        BinaryTreeQuestion.printSheets();
-        playGame (BinaryTreeQuestion);
+        */
+        LinkedList<BinaryTree<String>> nodeAnswer=Util.NodeAnswers(BinaryTreeQuestion,"preguntas.txt");
+        for(BinaryTree<String> s : nodeAnswer){
+            System.out.println(s.getRootContent());
+        }
         
-        System.out.println(BinaryTreeQuestion.numSheets());
+        Util.randomQuestion("preguntas.txt");
+        System.out.println();
+        //System.out.println(BinaryTreeQuestion.GetTreeSheets());
+        //System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
+        //BinaryTreeQuestion.printSheets();
+        //playGame (BinaryTreeQuestion);
+        
+        //System.out.println(BinaryTreeQuestion.numSheets());
         
     }
 
