@@ -19,6 +19,7 @@ import java.util.TreeMap;
 
 public class Util {
     
+    
     public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion){
         
         try(    FileReader reader = new FileReader(nameFileQuestion);
@@ -37,6 +38,7 @@ public class Util {
         }   
     }
     
+    
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){
@@ -50,7 +52,7 @@ public class Util {
         }
         return stackTreeQuestions.pop(); 
     }
-
+    
     
     public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers){
         
@@ -75,51 +77,57 @@ public class Util {
     }
     
     
-    public static boolean chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
-        System.out.println(answers.size());
+    public static void chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
+        
         String answer = answers.poll();
-        //BinaryTree<String> 
-        if(answers.isEmpty()){
-            //System.out.println("ES hoja");
-            System.out.println(answer);
-            if(answer.equals("si")){
-                System.out.println("Izquierdo");
-                treeQuestion.setLeft(animal);
-            }
-            else if (answer.equals("no")){
-                System.out.println("derecho");
-                treeQuestion.setRight(animal);
-            }
-            return true;
-        }
-        else if (!answers.isEmpty()) {
-            ///System.out.println("No es hoja");
-            System.out.println(answer);
+        if(answers.isEmpty() && isAnswerValid(answer)){                
             if(answer.equals("si"))
-                return chargeAnswers(treeQuestion.getLeft(), animal, answers);
+            treeQuestion.setLeft(animal);
+            else
+                treeQuestion.setRight(animal);   
+        }        
+        
+        else if (!answers.isEmpty() && isAnswerValid(answer)) {
+            if(answer.equals("si"))
+                chargeAnswers(treeQuestion.getLeft(), animal, answers);
             else if (answer.equals("no"))
-                return chargeAnswers(treeQuestion.getRight(), animal, answers);
-            //return false;
+                chargeAnswers(treeQuestion.getRight(), animal, answers);
         }
-        return false;
+        
+        else 
+            System.out.println("Revisar su archivo de respuestas");
+    }
+    
+    
+    public static boolean isAnswerValid(String answer){
+        
+        return answer.equals("si") || answer.equals("no");
+    }
+    
+    
+    public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
+        
+        animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
     }
     
     
     public static boolean isValidNumQuestion(int num, Stack<BinaryTree<String>> Questions) {
+        
         return num <= Questions.size();
-
     }
-    //hacer un stack.size();
+    
+    
     public static int askNumQuestionsUser (int numPreguntas)
     {
         System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
         System.out.println ("Escribe el número de pregunas que deseas relizar: ");
         int preguntas;
-        Scanner entradaEscaner = new Scanner (System.in); 
-        
+        Scanner entradaEscaner = new Scanner (System.in);   
         preguntas = entradaEscaner.nextInt();
         return preguntas;
     }
+    
+    
     public static void printSheetAnimal(BinaryTree<String> treeQuestion){
        
         if (treeQuestion== null)
@@ -128,20 +136,14 @@ public class Util {
             System.out.println("Tu animal es: " + treeQuestion.getRootContent());  
         
     }
+    
+    
     public static void printAnimalsTree (){
     }
-    public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
-        animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
-        //return true;
-    }
-    public static boolean verificarRespuesta (String respuesta){
-        if (respuesta.toLowerCase().equals("si")||respuesta.toLowerCase().equals("no"))
-        return true;
-        else 
-        return false;
-    }
- 
+    
+    
     public static String ingresarRespuesta (String pregunta){
+        
         String respuesta;
         System.out.println (pregunta + ": " );
         Scanner entradaEscaner = new Scanner (System.in); 
@@ -149,6 +151,8 @@ public class Util {
         respuesta = entradaEscaner.nextLine();
         return respuesta;
     }
+    
+    
     public static void playGame (BinaryTree<String> treeQuestion){
         
         System.out.println ("Bienvenido, ¡vamos a adivinar el animal que piensas! ");
@@ -162,7 +166,7 @@ public class Util {
             respuesta = ingresarRespuesta(cont + treeTemp.getRootContent());
             cont++;
             numQuestions--;
-            if (verificarRespuesta(respuesta)){
+            if (isAnswerValid(respuesta)){
                 
                 if (respuesta.equals("si"))
                     treeTemp = treeTemp.getLeft();

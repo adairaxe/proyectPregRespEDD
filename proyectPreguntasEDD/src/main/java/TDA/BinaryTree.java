@@ -337,6 +337,8 @@ public class BinaryTree<E> {
         }
         return numlevels;
     }
+    
+    
     public int randomCountTreeComplete (){
         //cómo es un árbol completo con las preguntas puedo conocer con el número de hojas
         // este método sólo sirve en árboles completos
@@ -346,9 +348,13 @@ public class BinaryTree<E> {
         numLevels = log (this.numSheets()+1,2).intValue();
         return numLevels;
     }
+    
+    
     private static Double log(int num, int base) {
       return (Math.log10(num) / Math.log10(base));
    }
+    
+    
     public int numSheets (){
         int size;
         LinkedList<E> traversal = new LinkedList<>();
@@ -365,9 +371,13 @@ public class BinaryTree<E> {
         return traversal.size();
     }
     
+    
     public boolean isLeaf() {
+        
         return (this.getLeft() == null && this.getRight() == null);
     }
+    
+    
     public  BinaryTree<E> newcopyBinaryTree (){
         BinaryTree<E> newTree = new BinaryTree<> ();
     
@@ -385,6 +395,8 @@ public class BinaryTree<E> {
        return newTree;
     
     }
+    
+    
     public LinkedList<E> GetTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
@@ -401,6 +413,8 @@ public class BinaryTree<E> {
         //listSheet.toString();
         return listSheet;
     }
+    
+    
     public void printSheets (){
         LinkedList<E> sheets = new LinkedList<>();
         sheets = this.GetTreeSheets();

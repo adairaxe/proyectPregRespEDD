@@ -53,28 +53,23 @@ public class App extends Application {
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
         System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
-//        for(String animal : createMapSheets.keySet()){
-//            System.out.println(animal + " : " + createMapSheets.get(animal));
-//        }
-        
+
         LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
         
-//        
         Util.chargeAnimals(BinaryTreeQuestion,createMapSheets);
         
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
         
-//        
-//       for(String s : breadthTraversalQuestion){
-//            System.out.println(s);
-//        }
         for(String s : breadthTraversal){
             System.out.println(s);
         }
+
         System.out.println(BinaryTreeQuestion.GetTreeSheets());
         System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         BinaryTreeQuestion.printSheets();
         playGame (BinaryTreeQuestion);
+        
+        System.out.println(BinaryTreeQuestion.numSheets());
         
     }
 
