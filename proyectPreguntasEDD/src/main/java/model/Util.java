@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
@@ -49,6 +51,7 @@ public class Util {
            int num=0;
            while((question = buff.readLine()) != null && num<countAnswers){
                stackTreeQuestions.add(new BinaryTree(question));
+               num++;
            }          
            return stackTreeQuestions;
            
@@ -61,11 +64,29 @@ public class Util {
     */
     
     public static void randomQuestion(String nameFileQuestion){
-        Stack<BinaryTree<String>> preguntas=createStackQuestions(nameFileQuestion);
-        File archivo=new File(nameFileQuestion);
-        System.out.println(archivo.delete());
-    
+        try {
+            Stack<BinaryTree<String>> preguntas=createStackQuestions(nameFileQuestion);
+            File archivo=new File(nameFileQuestion);
+            archivo.delete();
+            archivo=new File(nameFileQuestion);
+            archivo.createNewFile();
+            FileWriter fw = new FileWriter(nameFileQuestion, false);
+            while(!preguntas.isEmpty()){
+                int numero=(int) (Math.random()*preguntas.size());
+                String lineToAppend = preguntas.get(numero).getRootContent()+"\n";
+                preguntas.remove(numero);
+                fw.write(lineToAppend);
+                
+            }
+            
+            fw.close();
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
+    
+    
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){

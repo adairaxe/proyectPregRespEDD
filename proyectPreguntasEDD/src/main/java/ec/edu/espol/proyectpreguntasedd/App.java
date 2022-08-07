@@ -48,7 +48,10 @@ public class App extends Application {
 //        launch();
 
         // ARBOL CARGADO CON PREGUNTAS
+       
+        //Util.randomQuestion("preguntas.txt");
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
+        
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
         System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
@@ -58,26 +61,29 @@ public class App extends Application {
         Util.chargeAnimals(BinaryTreeQuestion,createMapSheets);
         
         LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
-        /*
+        
+        
+       
         for(String s : breadthTraversal){
             System.out.println(s);
         }
-        */
+        
+        /*
         LinkedList<BinaryTree<String>> nodeAnswer=Util.NodeAnswers(BinaryTreeQuestion,"preguntas.txt");
         for(BinaryTree<String> s : nodeAnswer){
             System.out.println(s.getRootContent());
         }
-        
+       */
         System.out.println();
-        //System.out.println(BinaryTreeQuestion.GetTreeSheets());
-        //System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
-        //BinaryTreeQuestion.printSheets();
-        //playGame (BinaryTreeQuestion);
+        System.out.println(BinaryTreeQuestion.GetTreeSheets());
+        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
+        BinaryTreeQuestion.printSheets();
+        playGame (BinaryTreeQuestion);
         
 
         //System.out.println(BinaryTreeQuestion.numSheets());
 
-        System.out.println(BinaryTreeQuestion.numNodes());
+        //System.out.println(BinaryTreeQuestion.numNodes());
 
     }
 
