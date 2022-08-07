@@ -69,7 +69,7 @@ public class App extends Application {
         BinaryTreeQuestion.printSheets();
         playGame (BinaryTreeQuestion);
         
-        System.out.println(BinaryTreeQuestion.numSheets());
+        System.out.println(BinaryTreeQuestion.numNodes());
         
     }
 
