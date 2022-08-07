@@ -396,21 +396,33 @@ public class BinaryTree<E> {
     
     }
     
-    
-    public LinkedList<E> GetTreeSheets() {
+            
+     public LinkedList<E> GetTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
-        
+        Stack<BinaryTree>stackTree = new Stack <>();
         if (this.getLeft() != null) {
-            this.getLeft().GetTreeSheets();
+            stackTree.push(this.getLeft());
         } 
         if (this.getRight() != null) {
-            this.getRight().GetTreeSheets();
+            stackTree.push(this.getRight());
         }
         if (!this.isEmpty() && this.getRight() == null && this.getLeft() == null ) {
             listSheet.add(this.getRootContent());
         }
-        //listSheet.toString();
+        while (!stackTree.isEmpty()){
+            BinaryTree <E> treeTemp = new BinaryTree<>();
+            treeTemp = stackTree.pop();
+            if (treeTemp.getLeft() != null) {
+                stackTree.push(treeTemp.getLeft());
+            } 
+            if (treeTemp.getRight() != null) {
+                stackTree.push(treeTemp.getRight());
+            }
+            if (!treeTemp.isEmpty() && treeTemp.getRight() == null && treeTemp.getLeft() == null ) {
+                listSheet.add(treeTemp.getRootContent());
+            }
+        }
         return listSheet;
     }
     
