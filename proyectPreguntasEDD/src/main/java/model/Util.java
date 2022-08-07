@@ -169,18 +169,20 @@ public class Util {
     
     public static int askNumQuestionsUser (int numPreguntas)
     {
-        System.out.println ("Puedes seleccionar hasta " + numPreguntas + ":");
+        Integer preguntas;
+        Scanner entradaEscaner = new Scanner (System.in); 
+        do{
+        System.out.println ("Puedes seleccionar hasta " + numPreguntas + " preguntas.");
         System.out.println ("Escribe el número de pregunas que deseas relizar: ");
-        int preguntas;
-        Scanner entradaEscaner = new Scanner (System.in);   
         preguntas = entradaEscaner.nextInt();
+        }while (preguntas > numPreguntas);
         return preguntas;
     }
     
     
     public static void printSheetAnimal(BinaryTree<String> treeQuestion){
        
-        if (treeQuestion== null)
+        if (treeQuestion== null ||treeQuestion.getRootContent().equals("null"))
             System.out.println("¡Lo sentimos!, todavía no conocemos a ese animal.");
         else
             System.out.println("Tu animal es: " + treeQuestion.getRootContent());  

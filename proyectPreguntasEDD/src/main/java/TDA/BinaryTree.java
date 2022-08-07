@@ -358,7 +358,7 @@ public class BinaryTree<E> {
         int numLevels;
         // 1 + 2 + 4 + 8 +16 + 32 hojas 
         // 1 + 2 + 3 + 4 + 5 niveles
-        numLevels = log (this.numSheets()+1,2).intValue();
+        numLevels = log (this.numNodes()+1,2).intValue();
         return numLevels;
     }
     
@@ -368,8 +368,8 @@ public class BinaryTree<E> {
    }
     
     
-    public int numSheets (){
-        int size;
+    public int numNodes (){
+        
         LinkedList<E> traversal = new LinkedList<>();
         if (!this.isEmpty()) {
             traversal.add(this.getRootContent());
@@ -409,21 +409,33 @@ public class BinaryTree<E> {
     
     }
     
-    
-    public LinkedList<E> GetTreeSheets() {
+            
+     public LinkedList<E> GetTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
-        
+        Stack<BinaryTree>stackTree = new Stack <>();
         if (this.getLeft() != null) {
-            this.getLeft().GetTreeSheets();
+            stackTree.push(this.getLeft());
         } 
         if (this.getRight() != null) {
-            this.getRight().GetTreeSheets();
+            stackTree.push(this.getRight());
         }
         if (!this.isEmpty() && this.getRight() == null && this.getLeft() == null ) {
             listSheet.add(this.getRootContent());
         }
-        //listSheet.toString();
+        while (!stackTree.isEmpty()){
+            BinaryTree <E> treeTemp = new BinaryTree<>();
+            treeTemp = stackTree.pop();
+            if (treeTemp.getLeft() != null) {
+                stackTree.push(treeTemp.getLeft());
+            } 
+            if (treeTemp.getRight() != null) {
+                stackTree.push(treeTemp.getRight());
+            }
+            if (!treeTemp.isEmpty() && treeTemp.getRight() == null && treeTemp.getLeft() == null ) {
+                listSheet.add(treeTemp.getRootContent());
+            }
+        }
         return listSheet;
     }
     

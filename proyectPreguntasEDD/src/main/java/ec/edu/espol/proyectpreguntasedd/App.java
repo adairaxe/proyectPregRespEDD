@@ -68,15 +68,17 @@ public class App extends Application {
             System.out.println(s.getRootContent());
         }
         
-        Util.randomQuestion("preguntas.txt");
         System.out.println();
         //System.out.println(BinaryTreeQuestion.GetTreeSheets());
         //System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         //BinaryTreeQuestion.printSheets();
         //playGame (BinaryTreeQuestion);
         
+
         //System.out.println(BinaryTreeQuestion.numSheets());
-        
+
+        System.out.println(BinaryTreeQuestion.numNodes());
+
     }
 
 }
