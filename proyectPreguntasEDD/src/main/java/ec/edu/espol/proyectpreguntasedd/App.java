@@ -47,40 +47,55 @@ public class App extends Application {
     public static void main(String[] args) {
 //        launch();
 
-        // ARBOL CARGADO CON PREGUNTAS
-       
-        //Util.randomQuestion("preguntas.txt");
-        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt");
         
+       
+        
+        // ARBOL CARGADO CON PREGUNTAS
+        
+        //Se obtiene las posibles n preguntas del juego
+        int preguntasPosibles=Util.preguntasPosibles("preguntas.txt"); 
+        
+        //Se elige de las n preguntas, con cuantas se quiere jugar
+        
+        int numQuestions = askNumQuestionsUser(String.valueOf(preguntasPosibles));
+        
+        //se crea un stack con las n preguntas
+        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt",numQuestions);
+        
+        
+        //se crea el arbol de preguntas
         BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
-        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt");
-
+        
+        //se crea un mapa con las respuestas 
+        
+        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt",numQuestions);
+        
         LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
         
+        //se carga las respuestas a las preguntas 
         Util.chargeAnimals(BinaryTreeQuestion,createMapSheets);
         
-        LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
+        playGame (BinaryTreeQuestion,numQuestions);
         
+
         
-       
-        for(String s : breadthTraversal){
+       /*
+        for(String s : breadthTraversalQuestion){
             System.out.println(s);
         }
         
-        /*
+        
         LinkedList<BinaryTree<String>> nodeAnswer=Util.NodeAnswers(BinaryTreeQuestion,"preguntas.txt");
         for(BinaryTree<String> s : nodeAnswer){
             System.out.println(s.getRootContent());
         }
        */
-        System.out.println();
-        System.out.println(BinaryTreeQuestion.GetTreeSheets());
-        System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
-        BinaryTreeQuestion.printSheets();
-        playGame (BinaryTreeQuestion);
+        //System.out.println();
+        //System.out.println(BinaryTreeQuestion.GetTreeSheets());
+        //System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
         
-
+        //BinaryTreeQuestion.printSheets();
+        
         //System.out.println(BinaryTreeQuestion.numSheets());
 
         //System.out.println(BinaryTreeQuestion.numNodes());
