@@ -64,9 +64,7 @@ public class App extends Application {
         
         
        
-        for(String s : breadthTraversal){
-            System.out.println(s);
-        }
+       
         
         /*
         LinkedList<BinaryTree<String>> nodeAnswer=Util.NodeAnswers(BinaryTreeQuestion,"preguntas.txt");
@@ -77,7 +75,7 @@ public class App extends Application {
         System.out.println();
         System.out.println(BinaryTreeQuestion.GetTreeSheets());
         System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
-        BinaryTreeQuestion.printSheets();
+        //BinaryTreeQuestion.printSheets();
         playGame (BinaryTreeQuestion);
         
 
