@@ -219,6 +219,7 @@ public class Util {
     
     public static int askNumQuestionsUser (String numPreguntas)
     {
+
         String preguntas;
         Scanner entradaEscaner = new Scanner(System.in);
         do {
@@ -234,6 +235,7 @@ public class Util {
         } while ( (Integer.parseInt(preguntas)) >Integer.parseInt(numPreguntas) );
         
         return Integer.parseInt(preguntas);
+
     }
     
     
@@ -270,18 +272,21 @@ public class Util {
         String respuesta;
         BinaryTree <String> treeTemp = new BinaryTree<>();
         treeTemp = treeQuestion;
-        while (Npreguntas > 0){
+        while (Npreguntas > 0) {
             respuesta = ingresarRespuesta(cont + treeTemp.getRootContent()).toLowerCase();
-            
-            if (isAnswerValid(respuesta)){
+
+            if (isAnswerValid(respuesta)) {
                 Npreguntas--;
                 cont++;
-                if (respuesta.equals("si"))
+                if (respuesta.equals("si")) {
                     treeTemp = treeTemp.getLeft();
-                else
+                } else {
                     treeTemp = treeTemp.getRight();
-            }else{
-                System.out.println ("Ingresa una respuesta válida, sin espacios, gracias");
+                }
+            } else {
+
+                System.out.println("Ingresa una respuesta válida, sin espacios, gracias");
+
             }
         }
         if (Npreguntas == 0)

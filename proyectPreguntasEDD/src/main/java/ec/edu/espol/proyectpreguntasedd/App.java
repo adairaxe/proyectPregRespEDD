@@ -78,11 +78,12 @@ public class App extends Application {
         playGame (BinaryTreeQuestion,numQuestions);
         
 
-        
+
        /*
         for(String s : breadthTraversalQuestion){
             System.out.println(s);
         }
+
         
         
         LinkedList<BinaryTree<String>> nodeAnswer=Util.NodeAnswers(BinaryTreeQuestion,"preguntas.txt");
@@ -90,6 +91,7 @@ public class App extends Application {
             System.out.println(s.getRootContent());
         }
        */
+
         //System.out.println();
         //System.out.println(BinaryTreeQuestion.GetTreeSheets());
         //System.out.println(BinaryTreeQuestion.randomCountTreeComplete());
