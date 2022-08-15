@@ -24,66 +24,70 @@ public class Util {
     
    
     public static int preguntasPosibles(String nameFileQuestion){
-        
         try ( 
             FileReader reader = new FileReader(nameFileQuestion);
             BufferedReader buff = new BufferedReader(reader);) {
-          
             String question;
             int contador=0;
             while ((question = buff.readLine()) != null) {
                 contador++;
             }
             return contador;
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return 0;
         }
     }
 
-    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion, int countQuestions){
-
+    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion, int countQuestions,LinkedList<Integer> random){
         try(    FileReader reader = new FileReader(nameFileQuestion);
                 BufferedReader buff = new BufferedReader(reader);   )
         {   
-           Stack<BinaryTree<String>> stackTreeQuestions = new Stack<>(); 
-           String question;
-           int num=0;
-           while((question = buff.readLine()) != null && num<countQuestions){
-               stackTreeQuestions.add(new BinaryTree(question));
-               num++;
-           }
-           return stackTreeQuestions;
-           
+            Stack<BinaryTree<String>> stackTreeQuestions = new Stack<>();
+            String question;
+            int num = 0;
+            if (random == null) {
+                System.out.println("normal");
+                while ((question = buff.readLine()) != null && num < countQuestions) {
+                    stackTreeQuestions.add(new BinaryTree(question));
+                    num++;
+                }
+            } else {
+                System.out.println("random");
+                LinkedList<Integer> l = new LinkedList<>(random);
+                while ((question = buff.readLine()) != null) {
+                    if (l.contains(num)) {
+                        stackTreeQuestions.add(new BinaryTree(question));
+                    }
+                    num++;
+                }
+            }
+            System.out.println(stackTreeQuestions);
+            return stackTreeQuestions;
+
         }   catch (Exception ex) {
             System.out.println(ex.getMessage()); 
             return null;
         }   
     }
-    
   
-    public static void randomQuestion(String nameFileQuestion,int numPreguntas){
-        try {
-            Stack<BinaryTree<String>> preguntas=createStackQuestions(nameFileQuestion,numPreguntas);
-            File archivo=new File(nameFileQuestion);
-            archivo.delete();
-            archivo=new File(nameFileQuestion);
-            archivo.createNewFile();
-            FileWriter fw = new FileWriter(nameFileQuestion, false);
-            while(!preguntas.isEmpty()){
-                int numero=(int) (Math.random()*preguntas.size());
-                String lineToAppend = preguntas.get(numero).getRootContent()+"\n";
-                preguntas.remove(numero);
-                fw.write(lineToAppend);
-                
+    public static LinkedList<Integer> randomQuestion(String nameFileQuestion, int numPreguntas) {
+        LinkedList<Integer> random = new LinkedList<>();
+        int contador = 0;
+        int numero = 0;
+        int numPreguntasT = preguntasPosibles(nameFileQuestion);
+        while (contador < numPreguntas) {
+            numero = (int) (Math.random() * numPreguntasT);
+            if (!random.contains(numero)) {
+                random.add(numero);
+                contador++;
             }
-            
-            fw.close();
-            
-        } catch (IOException ex) {
-            ex.printStackTrace();
         }
+        random.sort((s1, s2) -> {
+            return s1 - s2;
+        });
+        return random;
+
     }
    
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
@@ -124,23 +128,33 @@ public class Util {
     }
     
     
-    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers, int countAnswer){
+    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers, int countAnswer,LinkedList<Integer> random ){
         
         Map<String, Queue<String>> MapAnswers = new TreeMap();
         try(    FileReader reader = new FileReader(nameFileAnswers);
                 BufferedReader buff = new BufferedReader(reader);   )
         {   
            String answer;
-           int count=0;
-           while((answer = buff.readLine()) != null && count<countAnswer){
+           int count = 0;
+            while ((answer = buff.readLine()) != null && count < countAnswer) {
                 String[] array = answer.split(" ");
                 Queue<String> arrayAnswers = new LinkedList();
-                for(int i=1 ; i < countAnswer+1 ; i++)
-                    arrayAnswers.add(array[i]);
+
+                if (random==null) {
+                    for (int i = 1; i < countAnswer + 1; i++) {
+                        arrayAnswers.add(array[i]);
+                    }
+                }else{
+                    for(Integer i : random){
+                        arrayAnswers.add(array[i+1]);
+                    }
+                    
+                }
+                System.out.println(arrayAnswers);
                 MapAnswers.put(array[0], arrayAnswers);
-                
+
                 count++;
-           }
+            }
         }   catch (Exception ex) {
             System.out.println(ex.getMessage());
             
@@ -193,8 +207,7 @@ public class Util {
         return num <= Questions.size();
     }
     
-    public static boolean isQuestion(String texto, String pregunta,int numPreguntas){
-         Stack<BinaryTree<String>> s=createStackQuestions("preguntas.txt",numPreguntas);
+    public static boolean isQuestion(String pregunta , Stack<BinaryTree<String>> s){
          while(!s.isEmpty()){
              if(s.pop().getRootContent().equals(pregunta)){
                  return true;
@@ -203,11 +216,11 @@ public class Util {
          return false;
     }
     
-    public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,String archivo,int numPreguntas){
+    public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,Stack<BinaryTree<String>> s){
         LinkedList<BinaryTree<String>> childrenNodes=new LinkedList<>();
         LinkedList<BinaryTree<String>> nodesTree=BinaryTreeQuestion.preOrderTraversalNodesR();
         for(BinaryTree<String> node : nodesTree){
-            if(!isQuestion(archivo,node.getRootContent(),numPreguntas)){
+            if(!isQuestion(node.getRootContent(),s)){
                 childrenNodes.add(node);
             }
         }

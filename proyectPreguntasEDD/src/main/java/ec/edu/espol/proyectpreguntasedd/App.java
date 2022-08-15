@@ -53,6 +53,9 @@ public class App extends Application {
         // ARBOL CARGADO CON PREGUNTAS
         
         //Se obtiene las posibles n preguntas del juego
+      
+        
+        
         int preguntasPosibles=Util.preguntasPosibles("preguntas.txt"); 
         
         //Se elige de las n preguntas, con cuantas se quiere jugar
@@ -60,7 +63,10 @@ public class App extends Application {
         int numQuestions = askNumQuestionsUser(String.valueOf(preguntasPosibles));
         
         //se crea un stack con las n preguntas
-        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt",numQuestions);
+        LinkedList<Integer> pr=Util.randomQuestion("preguntas.txt", numQuestions);
+        
+        Stack<BinaryTree<String>> createStackQuestions=Util.createStackQuestions("preguntas.txt", numQuestions,pr);
+        
         
         
         //se crea el arbol de preguntas
@@ -68,7 +74,8 @@ public class App extends Application {
         
         //se crea un mapa con las respuestas 
         
-        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt",numQuestions);
+        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt",numQuestions, pr);
+        
         
         LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
         
@@ -101,7 +108,7 @@ public class App extends Application {
         //System.out.println(BinaryTreeQuestion.numSheets());
 
         //System.out.println(BinaryTreeQuestion.numNodes());
-
+        
     }
 
 }

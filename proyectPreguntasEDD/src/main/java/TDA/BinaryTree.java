@@ -1,13 +1,8 @@
 package TDA;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.
-        PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.TreeMap;
 
 public class BinaryTree<E> {
 
