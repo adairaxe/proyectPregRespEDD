@@ -56,16 +56,16 @@ public class App extends Application {
       
         
         
-        int preguntasPosibles=Util.preguntasPosibles("preguntas.txt"); 
+        int preguntasPosibles = Util.preguntasPosibles("preguntas.txt"); 
         
         //Se elige de las n preguntas, con cuantas se quiere jugar
         
         int numQuestions = askNumQuestionsUser(String.valueOf(preguntasPosibles));
         
         //se crea un stack con las n preguntas
-        LinkedList<Integer> pr=Util.randomQuestion("preguntas.txt", numQuestions);
+        LinkedList<Integer> pr = Util.randomQuestion("preguntas.txt", numQuestions);
         
-        Stack<BinaryTree<String>> createStackQuestions=Util.createStackQuestions("preguntas.txt", numQuestions,pr);
+        Stack<BinaryTree<String>> createStackQuestions=Util.createStackQuestions("preguntas.txt", numQuestions, pr);
         
         
         

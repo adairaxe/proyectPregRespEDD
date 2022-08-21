@@ -38,8 +38,10 @@ public class Util {
             return 0;
         }
     }
-
-    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion, int countQuestions,LinkedList<Integer> random){
+    
+    
+    
+    public static Stack<BinaryTree<String>> createStackQuestions(String nameFileQuestion, int countQuestions, LinkedList<Integer> random){
         try(    FileReader reader = new FileReader(nameFileQuestion);
                 BufferedReader buff = new BufferedReader(reader);   )
         {   
@@ -54,9 +56,9 @@ public class Util {
                 }
             } else {
                 System.out.println("random");
-                LinkedList<Integer> l = new LinkedList<>(random);
+                LinkedList<Integer> listQuestionRandom = new LinkedList<>(random);
                 while ((question = buff.readLine()) != null) {
-                    if (l.contains(num)) {
+                    if (listQuestionRandom.contains(num)) {
                         stackTreeQuestions.add(new BinaryTree(question));
                     }
                     num++;
@@ -70,11 +72,13 @@ public class Util {
             return null;
         }   
     }
-  
+    
+    
+    
     public static LinkedList<Integer> randomQuestion(String nameFileQuestion, int numPreguntas) {
         LinkedList<Integer> random = new LinkedList<>();
         int contador = 0;
-        int numero = 0;
+        int numero;
         int numPreguntasT = preguntasPosibles(nameFileQuestion);
         while (contador < numPreguntas) {
             numero = (int) (Math.random() * numPreguntasT);
@@ -86,6 +90,7 @@ public class Util {
         random.sort((s1, s2) -> {
             return s1 - s2;
         });
+        System.out.println("Lista de randomQuestion: " + random);
         return random;
 
     }
@@ -97,12 +102,11 @@ public class Util {
             BinaryTree<String> treeUp = new BinaryTree (stackTreeQuestions.pop().getRootContent());
             treeUp.setLeft(treeUnder.newcopyBinaryTree());
             treeUp.setRight(treeUnder.newcopyBinaryTree());
-            /*treeUp.setLeft(new BinaryTree<String> (treeUnder.getRootContent()));
-            treeUp.setRight(new BinaryTree<String> (treeUnder.getRootContent()));*/
             stackTreeQuestions.push(treeUp);
         }
         return stackTreeQuestions.pop(); 
     }
+    
     
     
     public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers){
@@ -126,6 +130,7 @@ public class Util {
         }
         return MapAnswers;
     }
+    
     
     
     public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers, int countAnswer,LinkedList<Integer> random ){
@@ -163,29 +168,25 @@ public class Util {
     }
     
     
+    
     public static void chargeAnswers(BinaryTree<String> treeQuestion, BinaryTree<String> animal, Queue<String> answers){
         String answer = answers.poll();
         
         if (answers.isEmpty() && isAnswerValid(answer)) {
-            if (answer.equals("si")) {
+            if (answer.equals("si")) 
                 treeQuestion.setLeft(animal);
-              
-            } else {
+            
+            else
                 treeQuestion.setRight(animal);
-           
-            }
+                
         } else if (!answers.isEmpty() && isAnswerValid(answer)) {
-            if(answer.equals("si")){
-               
+            if(answer.equals("si"))
                 chargeAnswers(treeQuestion.getLeft(), animal, answers);
-            }
-            else if (answer.equals("no")){
-               
-                chargeAnswers(treeQuestion.getRight(), animal, answers);
-            }
-        }
-        
-        else 
+            
+            else if (answer.equals("no"))
+                chargeAnswers(treeQuestion.getRight(), animal, answers); 
+            
+        }else 
             System.out.println("Revisar su archivo de respuestas");
     }
     
@@ -196,16 +197,20 @@ public class Util {
     }
     
     
+    
     public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
         
         animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
     }
     
     
+    
     public static boolean isValidNumQuestion(int num, Stack<BinaryTree<String>> Questions) {
         
         return num <= Questions.size();
     }
+    
+    
     
     public static boolean isQuestion(String pregunta , Stack<BinaryTree<String>> s){
          while(!s.isEmpty()){
@@ -216,9 +221,12 @@ public class Util {
          return false;
     }
     
+    
+    
     public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,Stack<BinaryTree<String>> s){
         LinkedList<BinaryTree<String>> childrenNodes=new LinkedList<>();
         LinkedList<BinaryTree<String>> nodesTree=BinaryTreeQuestion.preOrderTraversalNodesR();
+        
         for(BinaryTree<String> node : nodesTree){
             if(!isQuestion(node.getRootContent(),s)){
                 childrenNodes.add(node);
@@ -232,7 +240,6 @@ public class Util {
     
     public static int askNumQuestionsUser (String numPreguntas)
     {
-
         String preguntas;
         Scanner entradaEscaner = new Scanner(System.in);
         do {
@@ -247,18 +254,18 @@ public class Util {
             }
         } while ( (Integer.parseInt(preguntas)) >Integer.parseInt(numPreguntas) );
         
-        return Integer.parseInt(preguntas);
-
+        return Integer.parseInt(preguntas); 
     }
+    
     
     
     public static void printSheetAnimal(BinaryTree<String> treeQuestion){
        
         if (treeQuestion== null ||treeQuestion.getRootContent().equals("null"))
             System.out.println("¡Lo sentimos!, todavía no conocemos a ese animal.");
-        else
-            System.out.println("Tu animal es: " + treeQuestion.getRootContent());  
         
+        else
+            System.out.println("Tu animal es: " + treeQuestion.getRootContent());   
     }
     
     
@@ -266,12 +273,10 @@ public class Util {
     }
     
     
-    public static String ingresarRespuesta (String pregunta){
-        
+    public static String ingresarRespuesta (String pregunta){  
         String respuesta;
         System.out.println (pregunta + ": " );
         Scanner entradaEscaner = new Scanner (System.in); 
-        
         respuesta = entradaEscaner.nextLine();
         return respuesta;
     }
@@ -307,6 +312,9 @@ public class Util {
         else
             printSheetAnimal(treeTemp);
     }
+    
+    
+    
     public static String[] separarCadena (String cadena){
         return cadena.split(" ");
     }
