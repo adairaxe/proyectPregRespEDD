@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 /**
@@ -117,13 +118,11 @@ public class Adivinador {
     
     
     public void createListAleatoryOfQuestion(List<String> listOfQuestion , Map<String , ArrayList<String>> mapAnswers){
-        int sizeOrigin = listOfQuestion.size();
-        
-        List<String> newArraylistQuestions = new ArrayList();
+        List<String> newArraylistQuestions = new ArrayList();  
         Map<String , ArrayList<String>> mapAnswersRandom = new LinkedHashMap();
         mapAnswersRandom.putAll(mapAnswers);
-        
         int numRandom;
+        int sizeOrigin = listOfQuestion.size();
         for(int i = 0 ; i < sizeOrigin ; i++){
             while(!listOfQuestion.isEmpty()){
                 numRandom = (int)(Math.random() * 10);
@@ -138,6 +137,34 @@ public class Adivinador {
         this.setListOfQuestions(newArraylistQuestions);
         this.setMapOfAnswers(mapAnswersRandom);
     }
-
+    
+    
+    
+    public Stack<BinaryTree<String>> createBinaryTreeQuestion(){
+        Stack stack = new Stack();
+        LinkedList<String> copyListOfQuestion = new LinkedList();
+        copyListOfQuestion.addAll(listOfQuestions);
+        while(!copyListOfQuestion.isEmpty()){
+            BinaryTree<String> binaryTree = new BinaryTree(copyListOfQuestion.removeFirst());
+            stack.push(binaryTree);
+        }
+        return stack;
+    }
+    
+    
+    
+    public void createBinaryTreeRoot(Stack<BinaryTree<String>> stackTreeQuestions){
+        
+        while(stackTreeQuestions.size() > 1){
+            BinaryTree<String> treeUnder = stackTreeQuestions.pop();
+            BinaryTree<String> treeUp = new BinaryTree (stackTreeQuestions.pop().getRootContent());
+            treeUp.setLeft(treeUnder.newcopyBinaryTree());
+            treeUp.setRight(treeUnder.newcopyBinaryTree());
+            stackTreeQuestions.push(treeUp);
+        }
+        this.setTreeOfGame(stackTreeQuestions.pop()); 
+    }
+    
+    
     
 }
