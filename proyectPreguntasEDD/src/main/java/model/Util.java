@@ -80,8 +80,8 @@ public class Util {
         int contador = 0;
         int numero;
         int numPreguntasT = preguntasPosibles(nameFileQuestion);
-        while (contador < numPreguntas) {
-            numero = (int) (Math.random() * numPreguntasT);
+            while (contador < numPreguntas) {
+                numero = (int) (Math.random() * numPreguntasT);
             if (!random.contains(numero)) {
                 random.add(numero);
                 contador++;
@@ -94,7 +94,9 @@ public class Util {
         return random;
 
     }
-   
+    
+    
+    
     public static BinaryTree<String> createBinaryTreeQuestion(Stack<BinaryTree<String>> stackTreeQuestions){
         
         while(stackTreeQuestions.size() > 1){
@@ -109,31 +111,31 @@ public class Util {
     
     
     
-    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers){
-        
-        Map<String, Queue<String>> MapAnswers = new TreeMap();
-        try(    FileReader reader = new FileReader(nameFileAnswers);
-                BufferedReader buff = new BufferedReader(reader);   )
-        {   
-           String answer;
-           while((answer = buff.readLine()) != null){
-               
-                String[] array = answer.split(" ");
-                Queue<String> arrayAnswers = new LinkedList();
-                for(int i=1 ; i < array.length ; i++)
-                    arrayAnswers.add(array[i]);
-                MapAnswers.put(array[0], arrayAnswers);
-           }
-        }   catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            
-        }
-        return MapAnswers;
-    }
+//    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers){
+//        
+//        Map<String, Queue<String>> MapAnswers = new TreeMap();
+//        try(    FileReader reader = new FileReader(nameFileAnswers);
+//                BufferedReader buff = new BufferedReader(reader);   )
+//        {   
+//           String answer;
+//           while((answer = buff.readLine()) != null){
+//               
+//                String[] array = answer.split(" ");
+//                Queue<String> arrayAnswers = new LinkedList();
+//                for(int i=1 ; i < array.length ; i++)
+//                    arrayAnswers.add(array[i]);
+//                MapAnswers.put(array[0], arrayAnswers);
+//           }
+//        }   catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            
+//        }
+//        return MapAnswers;
+//    }
     
     
     
-    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers, int countAnswer,LinkedList<Integer> random ){
+    public static Map<String, Queue<String>> createMapSheets(String nameFileAnswers, int countAnswer, LinkedList<Integer> random){
         
         Map<String, Queue<String>> MapAnswers = new TreeMap();
         try(    FileReader reader = new FileReader(nameFileAnswers);
@@ -198,9 +200,9 @@ public class Util {
     
     
     
-    public static void chargeAnimals(BinaryTree<String> treeQuestion,Map<String, Queue<String>> animals){
+    public static void chargeAnimals(BinaryTree<String> treeQuestion, Map<String, Queue<String>> animals){
         
-        animals.forEach((k,v)->chargeAnswers(treeQuestion,new BinaryTree<String>(k),v));
+        animals.forEach((k,v)->chargeAnswers(treeQuestion, new BinaryTree<String>(k),v));
     }
     
     
