@@ -101,6 +101,20 @@ public class Adivinador {
     }
     
     
+    private void swapAnswersInMap(Map<String , ArrayList<String>> newMappAnswers , Map<String , ArrayList<String>> oldMapAnswers, int index){
+        Set<String> keySet = oldMapAnswers.keySet();
+        Iterator<String> iterator = keySet.iterator();
+            while(iterator.hasNext()){
+                String next = iterator.next();
+                ArrayList<String> ArrayNew = newMappAnswers.get(next);
+                ArrayList<String> ArrayOld = oldMapAnswers.get(next);
+                ArrayNew.add(ArrayOld.remove(index));
+                newMappAnswers.replace(next, ArrayNew);
+            } 
+        
+    }
+    
+    
     
     public void createListAleatoryOfQuestion(List<String> listOfQuestion , Map<String , ArrayList<String>> mapAnswers){
         int sizeOrigin = listOfQuestion.size();
@@ -110,22 +124,14 @@ public class Adivinador {
         mapAnswersRandom.putAll(mapAnswers);
         
         int numRandom;
-        Set<String> keySet = mapAnswers.keySet();
         for(int i = 0 ; i < sizeOrigin ; i++){
             while(!listOfQuestion.isEmpty()){
                 numRandom = (int)(Math.random() * 10);
                 if(numRandom < listOfQuestion.size()){
                     newArraylistQuestions.add(listOfQuestion.get(numRandom));
                     listOfQuestion.remove(numRandom);
-                          
-                    Iterator<String> iterator = keySet.iterator();
-                    while(iterator.hasNext()){
-                        String next = iterator.next();
-                        ArrayList<String> ArrayNew = mapAnswersRandom.get(next);
-                        ArrayList<String> ArrayOld = mapAnswers.get(next);
-                        ArrayNew.add(ArrayOld.remove(numRandom));
-                        mapAnswersRandom.replace(next, ArrayNew);
-                    }   
+                    
+                    this.swapAnswersInMap(mapAnswersRandom, mapAnswers, numRandom);  
                 }
             }
         }
