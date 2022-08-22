@@ -10,19 +10,29 @@
    <children>
       <TextField fx:id="txt_Preguntas" layoutX="51.0" layoutY="86.0" />
       <TextField fx:id="txt_Respuestas" layoutX="51.0" layoutY="188.0" />
-      <Label layoutX="60.0" layoutY="48.0" text="preguntas">
+      <Label fx:id="lb_preguntas" layoutX="60.0" layoutY="48.0" text="preguntas">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="152.0" text="respuestas">
+      <Label fx:id="lb_preguntas" layoutX="58.0" layoutY="152.0" text="respuestas">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="300.0" layoutY="337.0" mnemonicParsing="false" text="Cancelar" />
-      <Button layoutX="402.0" layoutY="337.0" mnemonicParsing="false" text="Cargar" />
-      <Button fx:id="btn_preguntas" layoutX="248.0" layoutY="86.0" mnemonicParsing="false" text="buscar" />
-      <Button fx:id="btn_respuestas" layoutX="249.0" layoutY="188.0" mnemonicParsing="false" text="buscar" />
+      <Button layoutX="300.0" layoutY="337.0" mnemonicParsing="false" onAction="#cerrar" text="Cancelar" />
+      <Button fx:id="btn_cargar" layoutX="402.0" layoutY="337.0" mnemonicParsing="false" onAction="#cargarDatos" text="Cargar" />
+      <Button fx:id="btn_preguntas" layoutX="248.0" layoutY="86.0" mnemonicParsing="false" onAction="#archivoPreguntas" text="buscar" />
+      <Button fx:id="btn_respuestas" layoutX="249.0" layoutY="188.0" mnemonicParsing="false" onAction="#archivoRespuestas" text="buscar" />
+      <Label fx:id="error_R" layoutX="339.0" layoutY="90.0" prefHeight="19.0" prefWidth="195.0" text="ERROR VERIFIQUE EL ARCHIVO" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="error_P" layoutX="330.0" layoutY="191.0" prefHeight="19.0" prefWidth="195.0" text="ERROR VERIFIQUE EL ARCHIVO" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

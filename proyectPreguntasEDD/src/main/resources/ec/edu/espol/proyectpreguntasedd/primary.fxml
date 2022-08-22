@@ -7,24 +7,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.PrimaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.PrimaryController">
    <children>
-      <ImageView fx:id="menos" fitHeight="87.0" fitWidth="83.0" layoutX="162.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="menos" fitHeight="87.0" fitWidth="83.0" layoutX="131.0" layoutY="144.0" onMouseClicked="#disminuir" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../recursos/pngwing.com.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="mas" fitHeight="73.0" fitWidth="64.0" layoutX="373.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mas" fitHeight="79.0" fitWidth="76.0" layoutX="422.0" layoutY="148.0" onMouseClicked="#aumentar" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../recursos/pngwing.com%20-%20copia1.png" />
          </image>
       </ImageView>
-      <Label fx:id="num_preguntas" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="144.0" prefHeight="75.0" prefWidth="87.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 5;" text="0" textAlignment="CENTER">
+      <Label fx:id="num_preguntas" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="144.0" prefHeight="87.0" prefWidth="205.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 5;" text="0" textAlignment="CENTER">
          <font>
             <Font size="53.0" />
          </font>
       </Label>
-      <Button fx:id="cargarButton" layoutX="229.0" layoutY="366.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="148.0" text="cargar archivos" />
+      <Button fx:id="cargarButton" layoutX="229.0" layoutY="366.0" mnemonicParsing="false" onAction="#cargarDatos" prefHeight="49.0" prefWidth="148.0" text="cargar archivos" />
       <Button fx:id="playButton" layoutX="226.0" layoutY="272.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="154.0" text="Jugar" />
+      <Label fx:id="txt_notificacion" layoutX="275.0" layoutY="91.0" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

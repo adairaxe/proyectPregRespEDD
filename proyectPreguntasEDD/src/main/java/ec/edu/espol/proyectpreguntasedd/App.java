@@ -76,7 +76,7 @@ public class App extends Application {
 //        Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
 //        
 //        playGame (BinaryTreeQuestion,numQuestions);
-
+/*
         Adivinador adivinador = new Adivinador();
         List<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
         Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
@@ -93,7 +93,7 @@ public class App extends Application {
         }
         
         adivinador.askNumQuestionsUser();
-        
+        */
         
 
         

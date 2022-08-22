@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -35,32 +36,62 @@ public class SecondaryController implements Initializable {
     
     private File fileRespuestas;
     private File filePreguntas;
+    @FXML
+    private Label lb_preguntas;
+    @FXML
+    private Label error_R;
+    @FXML
+    private Label error_P;
+    @FXML
+    private Button btn_cargar;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.error_P.setVisible(false);
+        this.error_R.setVisible(false);
+        this.filePreguntas=null;
+        this.fileRespuestas=null;
+        
+        this.txt_Preguntas.setEditable(false);
+        this.txt_Respuestas.setEditable(false);
+        
+        
     }
     
     @FXML
-    public void archivoPreguntas(ActionEvent event){
+    public void archivoPreguntas(){
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         this.filePreguntas = fileChooser.showOpenDialog(stage);
         this.txt_Preguntas.setText(filePreguntas.getName());
     }
-     
     @FXML
-    public void archivoRespuestas(ActionEvent event){
+    public void archivoRespuestas(){
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         this.fileRespuestas = fileChooser.showOpenDialog(stage);
         this.txt_Respuestas.setText(fileRespuestas.getName());
     }
-    
     @FXML
-    public void cerrar(ActionEvent event){
+    public void cargarDatos(){
+        this.error_R.setVisible(false);
+        this.error_P.setVisible(false); 
+        
+        if(this.fileRespuestas==null)
+            this.error_R.setVisible(true);
+        
+        if(this.filePreguntas==null)
+            this.error_P.setVisible(true);
+            
+         
+        if(this.fileRespuestas!=null && this.txt_Respuestas!=null){
+            cerrar();
+        }
+    }
+    @FXML
+    public void cerrar(){
         Stage stage=(Stage) this.btn_preguntas.getScene().getWindow();
         stage.close();
     }

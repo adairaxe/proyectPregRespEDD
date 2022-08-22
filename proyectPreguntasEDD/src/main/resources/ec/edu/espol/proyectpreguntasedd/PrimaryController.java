@@ -5,14 +5,20 @@
  */
 package ec.edu.espol.proyectpreguntasedd;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -31,12 +37,51 @@ public class PrimaryController implements Initializable {
     private Button cargarButton;
     @FXML
     private Button playButton;
+    private String pathRespuestas;
+    private String pathPreguntas;
+    @FXML
+    private Label txt_notificacion;
+    
+    public int numeroPreguntas;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        playButton.setVisible(false);
+        this.numeroPreguntas=0;
+        num_preguntas.setText(String.valueOf(numeroPreguntas));
+    }
+    
+    @FXML
+    public void cargarDatos(){
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("secondary.fxml"));
+            Parent root = loader.load();
+            SecondaryController controlador = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            this.pathPreguntas=controlador.getFilePreguntas().getPath();
+            this.pathRespuestas=controlador.getFileRespuestas().getPath();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    public void aumentar(){
+        this.numeroPreguntas++;
+        num_preguntas.setText(String.valueOf(numeroPreguntas));
+    }
+    
+    public void disminuir(){
+        this.numeroPreguntas--;
+        num_preguntas.setText(String.valueOf(numeroPreguntas));
+    }
+    
     
 }
