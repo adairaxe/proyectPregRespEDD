@@ -36,21 +36,35 @@ public class Adivinador {
         return treeOfGame;
     }  
     
-    
-    public void setTreeOfGame(BinaryTree<String> treeOfGame) {
+    private void setTreeOfGame(BinaryTree<String> treeOfGame) {
         this.treeOfGame = treeOfGame;
     }
+
+    public List<String> getListOfQuestions() {
+        return listOfQuestions;
+    }
+
+    private void setListOfQuestions(List<String> listOfQuestions) {
+        this.listOfQuestions = listOfQuestions;
+    }
+
+    public Map<String, ArrayList<String>> getMapOfAnswers() {
+        return mapOfAnswers;
+    }
+
+    private void setMapOfAnswers(Map<String, ArrayList<String>> mapOfAnswers) {
+        this.mapOfAnswers = mapOfAnswers;
+    }
+     
     
-    
-    public LinkedList<String> createListOfQuestion(String fileOfQuestions) throws IOException{
+    public ArrayList<String> createListOfQuestion(String fileOfQuestions) throws IOException{
         try(    FileReader reader = new FileReader(fileOfQuestions);
                 BufferedReader buff = new BufferedReader(reader);   )
         {
-            LinkedList<String> linkedListQuestion = new LinkedList<String>();
+            ArrayList<String> linkedListQuestion = new ArrayList<String>();
             String question;
             while ((question = buff.readLine()) != null){
-                System.out.println(question);
-                linkedListQuestion.addLast(question);
+                linkedListQuestion.add(question);
             }
             
             return linkedListQuestion;
@@ -62,16 +76,16 @@ public class Adivinador {
     
     
     
-    public Map<String , LinkedList<String>> createMapOfAnswer(String fileOfAnswers) throws IOException{
+    public Map<String , ArrayList<String>> createMapOfAnswer(String fileOfAnswers) throws IOException{
         try(    FileReader reader = new FileReader(fileOfAnswers);
                 BufferedReader buff = new BufferedReader(reader);   )
         {
-            Map<String, LinkedList<String>> mapAnswers = new LinkedHashMap();
+            Map<String, ArrayList<String>> mapAnswers = new LinkedHashMap();
             String answer;
             
             while ((answer = buff.readLine()) != null){
                 String[] splitAnswers = answer.split(" ");
-                LinkedList<String> arrayListAnswers = new LinkedList();
+                ArrayList<String> arrayListAnswers = new ArrayList();
                 
                 for (int i = 1; i < splitAnswers.length; i++)
                         arrayListAnswers.add(splitAnswers[i]);
@@ -88,11 +102,15 @@ public class Adivinador {
     
     
     
-    public List<String> createListAleatoryOfQuestion(List<String> listOfQuestion /*, Map<String , ArrayList<String>> mapAnswers*/){
+    public void createListAleatoryOfQuestion(List<String> listOfQuestion , Map<String , ArrayList<String>> mapAnswers){
         int sizeOrigin = listOfQuestion.size();
+        
         List<String> newArraylistQuestions = new ArrayList();
+        Map<String , ArrayList<String>> mapAnswersRandom = new LinkedHashMap();
+        mapAnswersRandom.putAll(mapAnswers);
+        
         int numRandom;
-//        Set<String> keySet = mapAnswers.keySet();
+        Set<String> keySet = mapAnswers.keySet();
         for(int i = 0 ; i < sizeOrigin ; i++){
             while(!listOfQuestion.isEmpty()){
                 numRandom = (int)(Math.random() * 10);
@@ -100,17 +118,19 @@ public class Adivinador {
                     newArraylistQuestions.add(listOfQuestion.get(numRandom));
                     listOfQuestion.remove(numRandom);
                           
-//                    Iterator<String> iterator = keySet.iterator();
-//                    while(iterator.hasNext()){
-//                        ArrayList<String> get = mapAnswers.get(iterator);
-//                    }
-                    
-                    
+                    Iterator<String> iterator = keySet.iterator();
+                    while(iterator.hasNext()){
+                        String next = iterator.next();
+                        ArrayList<String> ArrayNew = mapAnswersRandom.get(next);
+                        ArrayList<String> ArrayOld = mapAnswers.get(next);
+                        ArrayNew.add(ArrayOld.remove(numRandom));
+                        mapAnswersRandom.replace(next, ArrayNew);
+                    }   
                 }
             }
         }
-        return newArraylistQuestions;
-        
+        this.setListOfQuestions(newArraylistQuestions);
+        this.setMapOfAnswers(mapAnswersRandom);
     }
 
     

@@ -49,35 +49,40 @@ public class App extends Application {
     public static void main(String[] args) throws IOException {
 //        launch();
 
-//        int preguntasPosibles = Util.preguntasPosibles("preguntas.txt"); 
+//        int preguntasPosibles = Util.calculateMaxQuestions("preguntas.txt"); 
 //        
-//        int numQuestions = askNumQuestionsUser(String.valueOf(preguntasPosibles));
+//        int numQuestions = askNumQuestionsUser((preguntasPosibles));
 //        
-//        //se crea un stack con las n preguntas
+//        se crea un stack con las n preguntas
 //        LinkedList<Integer> pr = Util.randomQuestion("preguntas.txt", numQuestions);
 //        
 //        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions("preguntas.txt", numQuestions, pr);
+//        System.out.println(createStackQuestions);
 //
-//        //se crea el arbol de preguntas
+//        se crea el arbol de preguntas
 //        BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-//        
-//        //se crea un mapa con las respuestas 
+//        LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
+//        for(String s : breadthTraversal){
+//            System.out.println(s);
+//        }
+//
+//        se crea un mapa con las respuestas
 //        
 //        Map<String, Queue<String>> createMapSheets = Util.createMapSheets("respuestas.txt", numQuestions, pr);
-// 
+//        System.out.println(createMapSheets);
 //        LinkedList<String> breadthTraversalQuestion = BinaryTreeQuestion.breadthTraversal();
-//        
+//
 //        //se carga las respuestas a las preguntas 
 //        Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
 //        
 //        playGame (BinaryTreeQuestion,numQuestions);
-        
-        
+
         Adivinador adivinador = new Adivinador();
         List<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
-        Map<String, LinkedList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
-        System.out.println(adivinador.createListAleatoryOfQuestion(createListOfQuestion));
-        System.out.println(createMapOfAnswer);
+        Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
+        adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
+        System.out.println(adivinador.getListOfQuestions());
+        System.out.println(adivinador.getMapOfAnswers());
         
 
         

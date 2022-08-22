@@ -23,7 +23,7 @@ import java.util.TreeMap;
 public class Util {
     
    
-    public static int preguntasPosibles(String nameFileQuestion){
+    public static int calculateMaxQuestions(String nameFileQuestion){
         try ( 
             FileReader reader = new FileReader(nameFileQuestion);
             BufferedReader buff = new BufferedReader(reader);) {
@@ -79,7 +79,7 @@ public class Util {
         LinkedList<Integer> random = new LinkedList<>();
         int contador = 0;
         int numero;
-        int numPreguntasT = preguntasPosibles(nameFileQuestion);
+        int numPreguntasT = calculateMaxQuestions(nameFileQuestion);
             while (contador < numPreguntas) {
                 numero = (int) (Math.random() * numPreguntasT);
             if (!random.contains(numero)) {
@@ -225,22 +225,22 @@ public class Util {
     
     
     
-    public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,Stack<BinaryTree<String>> s){
-        LinkedList<BinaryTree<String>> childrenNodes=new LinkedList<>();
-        LinkedList<BinaryTree<String>> nodesTree=BinaryTreeQuestion.preOrderTraversalNodesR();
-        
-        for(BinaryTree<String> node : nodesTree){
-            if(!isQuestion(node.getRootContent(),s)){
-                childrenNodes.add(node);
-            }
-        }
-        return childrenNodes;
-    }
+//    public static LinkedList<BinaryTree<String>> NodeAnswers(BinaryTree<String> BinaryTreeQuestion,Stack<BinaryTree<String>> s){
+//        LinkedList<BinaryTree<String>> childrenNodes=new LinkedList<>();
+//        LinkedList<BinaryTree<String>> nodesTree=BinaryTreeQuestion.preOrderTraversalNodesR();
+//        
+//        for(BinaryTree<String> node : nodesTree){
+//            if(!isQuestion(node.getRootContent(),s)){
+//                childrenNodes.add(node);
+//            }
+//        }
+//        return childrenNodes;
+//    }
     
     
     
     
-    public static int askNumQuestionsUser (String numPreguntas)
+    public static int askNumQuestionsUser (int numPreguntas)
     {
         String preguntas;
         Scanner entradaEscaner = new Scanner(System.in);
@@ -254,7 +254,7 @@ public class Util {
                 preguntas = entradaEscaner.nextLine();
                 isNumeric =  preguntas.matches("[+-]?\\d*(\\.\\d+)?");
             }
-        } while ( (Integer.parseInt(preguntas)) >Integer.parseInt(numPreguntas) );
+        } while ( (Integer.parseInt(preguntas)) > (numPreguntas) );
         
         return Integer.parseInt(preguntas); 
     }
