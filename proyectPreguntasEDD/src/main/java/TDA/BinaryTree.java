@@ -55,6 +55,14 @@ public class BinaryTree<E> {
     public String toString() {
         return "" + root;
     }
+    
+    public void setLeft2(E tree) {
+        this.root.setLeft(new BinaryTree(tree));
+    }
+
+    public void setRight2(E tree) {
+        this.root.setRight(new BinaryTree(tree));
+    }
 
     public LinkedList<E> preOrderTraversalRecursive() {
         LinkedList<E> traversal = new LinkedList<>();

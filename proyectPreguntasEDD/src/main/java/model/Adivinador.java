@@ -19,9 +19,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
+import static model.Util.isAnswerValid;
 
 /**
  *
@@ -153,11 +155,10 @@ public class Adivinador {
     
     
     
-    public void createBinaryTreeRoot(Stack<BinaryTree<String>> stackTreeQuestions){
-        
+    public void createBinaryTreeRoot(Stack<BinaryTree<String>> stackTreeQuestions){        
         while(stackTreeQuestions.size() > 1){
             BinaryTree<String> treeUnder = stackTreeQuestions.pop();
-            BinaryTree<String> treeUp = new BinaryTree (stackTreeQuestions.pop().getRootContent());
+            BinaryTree<String> treeUp = new BinaryTree(stackTreeQuestions.pop().getRootContent());
             treeUp.setLeft(treeUnder.newcopyBinaryTree());
             treeUp.setRight(treeUnder.newcopyBinaryTree());
             stackTreeQuestions.push(treeUp);
@@ -166,5 +167,62 @@ public class Adivinador {
     }
     
     
+    
+    public BinaryTree<String> chargeAnswer(BinaryTree<String> treeQuestion, String animal, ArrayList<String> answersOfMap){
+        String remove = answersOfMap.remove(0);
+        if(answersOfMap.isEmpty()){
+            if(remove.equals("si")){
+                if(treeQuestion.getLeft() != null )
+                    animal = treeQuestion.getLeft() + " " + animal;
+                treeQuestion.setLeft2(animal);
+            } 
+            else{
+                if(treeQuestion.getRight() != null )
+                    animal = treeQuestion.getRight() + " " + animal;
+                treeQuestion.setRight2(animal);
+            }   
+            return treeQuestion;  
+            
+        }
+        else{
+            if(remove.equals("si"))
+                chargeAnswer(treeQuestion.getLeft(), animal, answersOfMap);
+            else
+                chargeAnswer(treeQuestion.getRight(), animal, answersOfMap);
+        }
+        return null;
+    }
+    
+    
+    
+    public void chargeAllAnswer(){
+        Set<String> keySet = mapOfAnswers.keySet();
+        Iterator<String> iterator = keySet.iterator();
+        while(iterator.hasNext()){
+            String next = iterator.next();
+            this.chargeAnswer(treeOfGame, next, mapOfAnswers.get(next));
+        }
+    }
+    
+    
+    
+    public int askNumQuestionsUser ()
+    {
+        String preguntas;
+        Scanner entradaEscaner = new Scanner(System.in);
+        do {
+            System.out.println("Puedes seleccionar hasta " + listOfQuestions.size() + " preguntas.");
+            System.out.println("Escribe el número de pregunas que deseas relizar: ");
+            preguntas = entradaEscaner.nextLine();
+            boolean isNumeric =  preguntas.matches("[+-]?\\d*(\\.\\d+)?");
+            while(!isNumeric){
+                System.out.println("No es un numero, ingrese un valor correcto: ");
+                preguntas = entradaEscaner.nextLine();
+                isNumeric =  preguntas.matches("[+-]?\\d*(\\.\\d+)?");
+            }
+        } while ( (Integer.parseInt(preguntas)) > (listOfQuestions.size()) );
+        
+        return Integer.parseInt(preguntas); 
+    }
     
 }

@@ -81,18 +81,18 @@ public class App extends Application {
         List<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
         Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
         adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
-//        System.out.println(adivinador.getListOfQuestions());
-//        System.out.println(adivinador.getMapOfAnswers());
         
         Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
-//        for(BinaryTree<String> v : createBinaryTreeQuestion){
-//            System.out.println(v);
-//        }
         adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
+        
+        adivinador.chargeAllAnswer();
+        
         LinkedList<String> breadthTraversal = adivinador.getTreeOfGame().breadthTraversal();
         for(String s : breadthTraversal){
             System.out.println(s);
         }
+        
+        adivinador.askNumQuestionsUser();
         
         
 
