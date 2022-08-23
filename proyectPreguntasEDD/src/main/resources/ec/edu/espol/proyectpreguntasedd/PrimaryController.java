@@ -73,11 +73,13 @@ public class PrimaryController implements Initializable {
         
     }
     
+    @FXML
     public void aumentar(){
         this.numeroPreguntas++;
         num_preguntas.setText(String.valueOf(numeroPreguntas));
     }
     
+    @FXML
     public void disminuir(){
         this.numeroPreguntas--;
         num_preguntas.setText(String.valueOf(numeroPreguntas));
