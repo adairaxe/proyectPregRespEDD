@@ -35,6 +35,9 @@ public class Adivinador {
     private List<String> listOfQuestions;
     private Map<String , ArrayList<String>> mapOfAnswers;
 
+    public Adivinador() {
+    }   
+    
     public BinaryTree<String> getTreeOfGame() {
         return treeOfGame;
     }  
@@ -168,7 +171,7 @@ public class Adivinador {
     
     
     
-    public BinaryTree<String> chargeAnswer(BinaryTree<String> treeQuestion, String animal, ArrayList<String> answersOfMap){
+    private BinaryTree<String> chargeAnswer(BinaryTree<String> treeQuestion, String animal, ArrayList<String> answersOfMap){
         String remove = answersOfMap.remove(0);
         if(answersOfMap.isEmpty()){
             if(remove.equals("si")){

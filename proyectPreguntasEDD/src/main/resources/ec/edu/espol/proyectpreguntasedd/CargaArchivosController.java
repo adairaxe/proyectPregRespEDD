@@ -66,14 +66,26 @@ public class CargaArchivosController implements Initializable {
     
     @FXML
     private void guardarArchivos(ActionEvent event) {
-        
+        if(ceck_archivosDefecto.isSelected()){
+            RutaPreguntas = "preguntas.txt";
+            RutaRespuestas = "respuestas.txt";
+        }
         try {
+            System.out.println(RutaPreguntas);
+            System.out.println(RutaRespuestas);
+            Stage stg = (Stage)bt_cargarRespuestas.getScene().getWindow();
+            stg.close();
+            System.out.println("LLEGO 1");
             FXMLLoader fxmlLoader2 = new FXMLLoader(App.class.getResource("primary.fxml"));
             Scene sc = new Scene(fxmlLoader2.load());
             PrimaryController primaryControl = fxmlLoader2.<PrimaryController>getController();
             
+            //NO ESTÁ SETEANDO EN LA VENTANA PRIMARY!!!!!
             primaryControl.setRutaPreguntas(RutaPreguntas);
             primaryControl.setRutaRespuestas(RutaRespuestas);
+            
+            System.out.println(RutaPreguntas);
+            System.out.println(RutaRespuestas);
             
             Stage sg = new Stage();
             sg.setScene(sc);
@@ -106,6 +118,7 @@ public class CargaArchivosController implements Initializable {
 
     @FXML
     private void selecionarPorDefecto(ActionEvent event) {
+        
     }
     
 }

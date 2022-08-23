@@ -5,9 +5,13 @@
  */
 package ec.edu.espol.proyectpreguntasedd;
 
+import TDA.BinaryTree;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,10 +51,6 @@ public class PrimaryController implements Initializable {
     private String RutaPreguntas;
     private String RutaRespuestas;
 
-    public void setNumMaxPreguntas(int numMaxPreguntas) {
-        this.numMaxPreguntas = numMaxPreguntas;
-    }
-
     public void setRutaPreguntas(String RutaPreguntas) {
         this.RutaPreguntas = RutaPreguntas;
     }
@@ -62,9 +62,22 @@ public class PrimaryController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        playButton.setVisible(false);
-        this.mas.setVisible(false);
-        this.menos.setVisible(false);
+        try {
+            System.out.println(RutaPreguntas);
+            System.out.println(RutaRespuestas);
+            Adivinador adivinador = new Adivinador();
+            System.out.println("Llego 3");
+            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
+            numMaxPreguntas = createListOfQuestion.size();
+            
+            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);
+            adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
+            Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
+            adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
+            adivinador.chargeAllAnswer();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
