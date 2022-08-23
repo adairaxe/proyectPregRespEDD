@@ -44,17 +44,17 @@
                </font></Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="75.0">
                <children>
-                  <RadioButton fx:id="rbt_no" mnemonicParsing="false" text="No">
+                  <RadioButton fx:id="rbt_no" mnemonicParsing="false" onAction="#selec_no" text="No">
                      <font>
                         <Font name="Yu Gothic Medium" size="18.0" />
                      </font></RadioButton>
-                  <RadioButton fx:id="rbt_si" mnemonicParsing="false" text="Sí">
+                  <RadioButton fx:id="rbt_si" mnemonicParsing="false" onAction="#selec_si" text="Sí">
                      <font>
                         <Font size="18.0" />
                      </font></RadioButton>
                </children>
             </HBox>
-            <Button fx:id="bt_siguiente" mnemonicParsing="false" text="Siguiente">
+            <Button fx:id="bt_siguiente" mnemonicParsing="false" onAction="#siguiente_pregunta" text="Siguiente">
                <font>
                   <Font name="Yu Gothic Medium" size="18.0" />
                </font>

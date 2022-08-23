@@ -5,13 +5,17 @@
  */
 package ec.edu.espol.proyectpreguntasedd;
 
+import TDA.BinaryTree;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import model.Adivinador;
 
 /**
  * FXML Controller class
@@ -28,13 +32,39 @@ public class InicioController implements Initializable {
     private RadioButton rbt_si;
     @FXML
     private Button bt_siguiente;
+    
+    private BinaryTree<String> arbolPreguntas;
+    
+    private ArrayList<String> respuestas;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        lb_pregunta.setText("Vamos que sí se puede muchachos");
     }    
+
+    @FXML
+    private void selec_no(ActionEvent event) {
+        rbt_si.setSelected(false);
+    }
+
+    @FXML
+    private void selec_si(ActionEvent event) {
+        rbt_no.setSelected(false);  
+    }
+
+    @FXML
+    private void siguiente_pregunta(ActionEvent event) {
+        String text;
+        if(rbt_no.isSelected() && !rbt_si.isSelected()){
+//            arbolPreguntas = arbolPreguntas.getRight();
+            text = rbt_si.getText();
+            respuestas.add(text);
+        }
+        else{
+            text = rbt_no.getText();
+            respuestas.add(text);
+        }
+    }
     
 }
