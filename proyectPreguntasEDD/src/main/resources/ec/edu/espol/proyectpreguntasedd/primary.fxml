@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.PrimaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="631.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.PrimaryController">
    <children>
-      <ImageView fx:id="menos" fitHeight="87.0" fitWidth="83.0" layoutX="131.0" layoutY="144.0" onMouseClicked="#disminuir" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="menos" fitHeight="87.0" fitWidth="83.0" layoutX="114.0" layoutY="144.0" onMouseClicked="#disminuir" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@recursos/pngwing.com.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="mas" fitHeight="79.0" fitWidth="76.0" layoutX="422.0" layoutY="148.0" onMouseClicked="#aumentar" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mas" fitHeight="79.0" fitWidth="76.0" layoutX="423.0" layoutY="148.0" onMouseClicked="#aumentar" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@recursos/pngwing.com%20-%20copia1.png" />
          </image>
@@ -25,14 +24,14 @@
             <Font size="53.0" />
          </font>
       </Label>
-      <Button fx:id="cargarButton" layoutX="229.0" layoutY="366.0" mnemonicParsing="false" onAction="#cargarDatos" prefHeight="49.0" prefWidth="148.0" text="cargar archivos" />
-      <Button fx:id="playButton" layoutX="226.0" layoutY="272.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="154.0" text="Jugar" />
+      <Button fx:id="playButton" layoutX="278.0" layoutY="298.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="75.0" text="Jugar">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
       <Label fx:id="txt_notificacion" layoutX="275.0" layoutY="91.0" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
-      <CheckBox fx:id="sin_archivos" layoutX="527.0" layoutY="415.0" mnemonicParsing="false" onAction="#defaultMode" text="Default Mode" />
-      <Button fx:id="cargarDenuevo" layoutX="33.0" layoutY="403.0" mnemonicParsing="false" onAction="#resetDatos" prefHeight="25.0" prefWidth="47.0" text="reset" />
    </children>
 </Pane>

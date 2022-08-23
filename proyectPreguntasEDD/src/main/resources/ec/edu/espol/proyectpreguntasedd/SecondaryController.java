@@ -64,6 +64,9 @@ public class SecondaryController implements Initializable {
         this.filePreguntas = fileChooser.showOpenDialog(stage);
         this.txt_Preguntas.setText(filePreguntas.getName());
     }
+    
+    
+    
     @FXML
     public void archivoRespuestas(){
         FileChooser fileChooser = new FileChooser(); 
@@ -71,6 +74,9 @@ public class SecondaryController implements Initializable {
         this.fileRespuestas = fileChooser.showOpenDialog(stage);
         this.txt_Respuestas.setText(fileRespuestas.getName());
     }
+    
+    
+    
     @FXML
     public void cargarDatos(){
         this.error_R.setVisible(false);
@@ -86,6 +92,9 @@ public class SecondaryController implements Initializable {
             cerrar();
         }
     }
+    
+    
+    
     @FXML
     public void cerrar(){
         Stage stage=(Stage) this.btn_preguntas.getScene().getWindow();

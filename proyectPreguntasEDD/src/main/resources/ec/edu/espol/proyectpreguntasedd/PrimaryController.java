@@ -13,11 +13,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Adivinador;
@@ -29,7 +31,6 @@ import model.Util;
  */
 public class PrimaryController implements Initializable {
 
-
     @FXML
     private ImageView menos;
     @FXML
@@ -37,99 +38,61 @@ public class PrimaryController implements Initializable {
     @FXML
     private Label num_preguntas;
     @FXML
-    private Button cargarButton;
-    @FXML
     private Button playButton;
-    private String pathRespuestas;
-    private String pathPreguntas;
     @FXML
+    
     private Label txt_notificacion;
     
-    public int numeroPreguntas;
+    private int numMaxPreguntas;
+    private String RutaPreguntas;
+    private String RutaRespuestas;
+
+    public void setNumMaxPreguntas(int numMaxPreguntas) {
+        this.numMaxPreguntas = numMaxPreguntas;
+    }
+
+    public void setRutaPreguntas(String RutaPreguntas) {
+        this.RutaPreguntas = RutaPreguntas;
+    }
+
+    public void setRutaRespuestas(String RutaRespuestas) {
+        this.RutaRespuestas = RutaRespuestas;
+    }
     
-    Util adivinador= new Util();
-    @FXML
-    private CheckBox sin_archivos;
-    @FXML
-    private Button cargarDenuevo;
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         playButton.setVisible(false);
-        this.numeroPreguntas=0;
-        num_preguntas.setText(String.valueOf(numeroPreguntas));
         this.mas.setVisible(false);
         this.menos.setVisible(false);
     }
-    
+
     @FXML
-    public void cargarDatos(){
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("secondary.fxml"));
-            Parent root = loader.load();
-            SecondaryController controlador = loader.getController();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-            this.pathPreguntas=controlador.getFilePreguntas().getPath();
-            this.pathRespuestas=controlador.getFileRespuestas().getPath();
-            this.playButton.setVisible(true);
-            this.mas.setVisible(false);
-            this.menos.setVisible(false);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    private void disminuir(MouseEvent event) {
+        int num = Integer.parseInt(num_preguntas.getText());
+        if(!(num == 1)){
+            num = num - 1;
+            num_preguntas.setText("");
+            num_preguntas.setText(String.valueOf(num));
+        }else{
+            Alert a1 = new Alert(Alert.AlertType.ERROR,"No puedes escoger menos de una preguntas");
+            a1.show();
         }
-        
     }
-    
+
     @FXML
-    public void aumentar(){
-        System.out.println(pathPreguntas);
-        System.out.println(Util.calculateMaxQuestions(pathPreguntas));
-        if(this.numeroPreguntas<=Util.calculateMaxQuestions(pathPreguntas)){
-            this.numeroPreguntas++;
-        }
-        num_preguntas.setText(String.valueOf(numeroPreguntas));
+    private void aumentar(MouseEvent event) {
+        int num = Integer.parseInt(num_preguntas.getText());
+        if(!(num == numMaxPreguntas)){
+            num = num + 1;
+            num_preguntas.setText("");
+            num_preguntas.setText(String.valueOf(num));
+        }else{
+            Alert a1 = new Alert(Alert.AlertType.ERROR,"No puedes escoger más del número de preguntas que tiene tu archivo");
+            a1.show();
+        }   
     }
+
     
-    @FXML
-    public void disminuir(){
-        if(this.numeroPreguntas>0){
-            this.numeroPreguntas--;
-        }
-        num_preguntas.setText(String.valueOf(numeroPreguntas));
-    }
-    @FXML
-    public void defaultMode(){
-        cargarButton.setVisible(true);
-        this.mas.setVisible(false);
-        this.menos.setVisible(false);
-        numeroPreguntas=0;
-        num_preguntas.setText(String.valueOf(numeroPreguntas));
-        this.pathPreguntas=null;
-        this.pathRespuestas=null;
-        this.playButton.setVisible(false);
-        if(this.sin_archivos.selectedProperty().get()){
-            cargarButton.setVisible(false);
-            this.pathPreguntas="preguntas.txt";
-            this.pathRespuestas="respuestas.txt";
-            this.mas.setVisible(true);
-            this.menos.setVisible(true);
-            this.playButton.setVisible(true);
-        }
-        
-    }
-    
-    public void resetDatos(){
-        this.sin_archivos.setSelected(false);
-        defaultMode();
-        
-          
-    }
     
 }

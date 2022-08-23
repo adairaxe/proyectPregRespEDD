@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.CargaArchivosController">
+   <center>
+      <HBox alignment="CENTER" prefHeight="184.0" prefWidth="551.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <Label fx:id="lb_nomFilePreguntas" prefHeight="25.0" prefWidth="200.0" text="Label" />
+                        <Button fx:id="bt_cargarPreguntas" mnemonicParsing="false" onAction="#cargarPreguntas" prefHeight="26.0" prefWidth="85.0" text="Preguntas">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <Label fx:id="lb_nomFileRespuestas" prefHeight="25.0" prefWidth="200.0" text="Label" />
+                        <Button fx:id="bt_cargarRespuestas" mnemonicParsing="false" onAction="#cargarRespuestas" prefHeight="26.0" prefWidth="86.0" text="Respuestas">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btGuargar" mnemonicParsing="false" onAction="#guardarArchivos" text="Empezar">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <VBox prefHeight="73.0" prefWidth="551.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <CheckBox fx:id="ceck_archivosDefecto" mnemonicParsing="false" onAction="#selecionarPorDefecto" text="Archivos por defecto" />
+            <Label text="Seleccione los archivo en caso de querer usar otros:" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="25.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+</BorderPane>
