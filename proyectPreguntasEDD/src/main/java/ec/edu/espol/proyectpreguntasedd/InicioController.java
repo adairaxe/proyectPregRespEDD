@@ -36,6 +36,8 @@ public class InicioController implements Initializable {
     private BinaryTree<String> arbolPreguntas;
     
     private ArrayList<String> respuestas;
+    
+    private int numPreguntas;
 
     
     @Override
@@ -56,15 +58,20 @@ public class InicioController implements Initializable {
     @FXML
     private void siguiente_pregunta(ActionEvent event) {
         String text;
-        if(rbt_no.isSelected() && !rbt_si.isSelected()){
-//            arbolPreguntas = arbolPreguntas.getRight();
-            text = rbt_si.getText();
-            respuestas.add(text);
-        }
-        else{
+        if(rbt_no.isSelected() && !rbt_si.isSelected()){     
             text = rbt_no.getText();
             respuestas.add(text);
+            arbolPreguntas = arbolPreguntas.getRight();
         }
+        else{
+            text = rbt_si.getText();
+            respuestas.add(text);
+            arbolPreguntas = arbolPreguntas.getLeft();
+        }
+        
+        lb_pregunta.setText(arbolPreguntas.getRootContent());
+        rbt_si.setSelected(false);
+        rbt_no.setSelected(false);
     }
     
 }
