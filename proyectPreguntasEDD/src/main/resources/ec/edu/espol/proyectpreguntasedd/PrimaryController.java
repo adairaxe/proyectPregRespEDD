@@ -15,10 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Adivinador;
+import model.Util;
 /**
  * FXML Controller class
  *
@@ -43,6 +46,12 @@ public class PrimaryController implements Initializable {
     private Label txt_notificacion;
     
     public int numeroPreguntas;
+    
+    Util adivinador= new Util();
+    @FXML
+    private CheckBox sin_archivos;
+    @FXML
+    private Button cargarDenuevo;
     /**
      * Initializes the controller class.
      */
@@ -51,6 +60,8 @@ public class PrimaryController implements Initializable {
         playButton.setVisible(false);
         this.numeroPreguntas=0;
         num_preguntas.setText(String.valueOf(numeroPreguntas));
+        this.mas.setVisible(false);
+        this.menos.setVisible(false);
     }
     
     @FXML
@@ -67,21 +78,58 @@ public class PrimaryController implements Initializable {
             stage.showAndWait();
             this.pathPreguntas=controlador.getFilePreguntas().getPath();
             this.pathRespuestas=controlador.getFileRespuestas().getPath();
+            this.playButton.setVisible(true);
+            this.mas.setVisible(false);
+            this.menos.setVisible(false);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         
     }
     
+    @FXML
     public void aumentar(){
-        this.numeroPreguntas++;
+        System.out.println(pathPreguntas);
+        System.out.println(Util.calculateMaxQuestions(pathPreguntas));
+        if(this.numeroPreguntas<=Util.calculateMaxQuestions(pathPreguntas)){
+            this.numeroPreguntas++;
+        }
         num_preguntas.setText(String.valueOf(numeroPreguntas));
     }
     
+    @FXML
     public void disminuir(){
-        this.numeroPreguntas--;
+        if(this.numeroPreguntas>0){
+            this.numeroPreguntas--;
+        }
         num_preguntas.setText(String.valueOf(numeroPreguntas));
     }
+    @FXML
+    public void defaultMode(){
+        cargarButton.setVisible(true);
+        this.mas.setVisible(false);
+        this.menos.setVisible(false);
+        numeroPreguntas=0;
+        num_preguntas.setText(String.valueOf(numeroPreguntas));
+        this.pathPreguntas=null;
+        this.pathRespuestas=null;
+        this.playButton.setVisible(false);
+        if(this.sin_archivos.selectedProperty().get()){
+            cargarButton.setVisible(false);
+            this.pathPreguntas="preguntas.txt";
+            this.pathRespuestas="respuestas.txt";
+            this.mas.setVisible(true);
+            this.menos.setVisible(true);
+            this.playButton.setVisible(true);
+        }
+        
+    }
     
+    public void resetDatos(){
+        this.sin_archivos.setSelected(false);
+        defaultMode();
+        
+          
+    }
     
 }

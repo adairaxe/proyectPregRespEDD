@@ -51,9 +51,6 @@ public class SecondaryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.error_P.setVisible(false);
         this.error_R.setVisible(false);
-        this.filePreguntas=null;
-        this.fileRespuestas=null;
-        
         this.txt_Preguntas.setEditable(false);
         this.txt_Respuestas.setEditable(false);
         
@@ -78,15 +75,14 @@ public class SecondaryController implements Initializable {
     public void cargarDatos(){
         this.error_R.setVisible(false);
         this.error_P.setVisible(false); 
-        
-        if(this.fileRespuestas==null)
-            this.error_R.setVisible(true);
-        
+         
         if(this.filePreguntas==null)
             this.error_P.setVisible(true);
-            
-         
-        if(this.fileRespuestas!=null && this.txt_Respuestas!=null){
+          
+        if(this.fileRespuestas==null)
+            this.error_R.setVisible(true);
+       
+        if(this.filePreguntas!=null && this.fileRespuestas!=null){
             cerrar();
         }
     }
