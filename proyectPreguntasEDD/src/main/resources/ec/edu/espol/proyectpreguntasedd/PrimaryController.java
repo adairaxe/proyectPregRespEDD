@@ -64,23 +64,21 @@ public class PrimaryController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
-           
-            System.out.println(RutaPreguntas);
-            System.out.println(RutaRespuestas);
-            
+
+        
+
+        try {
+
             Adivinador adivinador = new Adivinador();
-            System.out.println("Llego 3");
-            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
+            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
+            System.out.println(createListOfQuestion);
+            
             numMaxPreguntas = createListOfQuestion.size();
-            
-            
-            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);
+            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");            
             adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
-            
             adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
-//            adivinador.chargeAllAnswer();
+            adivinador.chargeAllAnswer();
             
             
         } catch (IOException ex) {

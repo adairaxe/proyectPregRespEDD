@@ -86,8 +86,6 @@ public class CargaArchivosController implements Initializable {
             System.out.println(RutaRespuestas);
             System.out.println("LLEGO 1");
             
-//            Stage stg = (Stage)lb_nomFilePreguntas.getScene().getWindow();
-//            stg.close();
 
             PrimaryController.RutaPreguntas = RutaPreguntas;
             PrimaryController.RutaRespuestas = RutaRespuestas;
