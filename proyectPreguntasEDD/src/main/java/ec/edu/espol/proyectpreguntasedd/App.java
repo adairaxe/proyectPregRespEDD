@@ -47,7 +47,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch();
+//        launch();
 
 //        int preguntasPosibles = Util.calculateMaxQuestions("preguntas.txt"); 
 //        
@@ -76,7 +76,7 @@ public class App extends Application {
 //        Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
 //        
 //        playGame (BinaryTreeQuestion,numQuestions);
-/*
+
         Adivinador adivinador = new Adivinador();
         List<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
         Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
@@ -92,8 +92,9 @@ public class App extends Application {
             System.out.println(s);
         }
         
-        adivinador.askNumQuestionsUser();
-        */
+        LinkedList<String> animals = adivinador.getAnimals();
+        System.out.println(animals);
+        
         
 
         

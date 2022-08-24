@@ -397,7 +397,7 @@ public class BinaryTree<E> {
     }
     
             
-     public LinkedList<E> GetTreeSheets() {
+     public LinkedList<E> getTreeSheets() {
             
         LinkedList<E> listSheet = new LinkedList<>();
         Stack<BinaryTree>stackTree = new Stack <>();
@@ -429,7 +429,7 @@ public class BinaryTree<E> {
     
     public void printSheets (){
         LinkedList<E> sheets = new LinkedList<>();
-        sheets = this.GetTreeSheets();
+        sheets = this.getTreeSheets();
         for (E e : sheets){
             System.out.println (e);
         }

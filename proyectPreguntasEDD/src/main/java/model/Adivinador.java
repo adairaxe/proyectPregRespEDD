@@ -228,13 +228,61 @@ public class Adivinador {
     }
     
     
-    public BinaryTree<String> travelToN(BinaryTree<String> treeQuestion, String answerUser){
-        BinaryTree<String> treeAdvance = new BinaryTree();
+    
+    public int askNumQuestionsUser2(Scanner sc){
+        int numPregUser = sc.nextInt();
+        return numPregUser;
+    }
+    
+    
+    
+    private BinaryTree<String> travelToN(BinaryTree<String> treeQuestion, String answerUser){
         if(answerUser.equals("si"))
-            treeAdvance = treeQuestion.getLeft();
+            treeQuestion = treeQuestion.getLeft();
         else
-            treeAdvance = treeQuestion.getRight();
-        return treeAdvance;
+            treeQuestion = treeQuestion.getRight();
+        return treeQuestion;
+    }
+    
+    
+    
+    private static String ingresarRespuesta (){  
+        String respuesta;
+        Scanner entradaEscaner = new Scanner (System.in); 
+        respuesta = entradaEscaner.nextLine();
+        return respuesta;
+    }
+    
+    
+    public LinkedList<String> getAnimals(){
+        LinkedList<String> listAnimals = new LinkedList();
+        int numQuestionUser = this.askNumQuestionsUser();
         
+        while(numQuestionUser > 0){
+            System.out.println(treeOfGame.getRootContent());
+            String ingresarRespuesta = Adivinador.ingresarRespuesta();
+            treeOfGame = this.travelToN(treeOfGame, ingresarRespuesta);
+            numQuestionUser = numQuestionUser - 1;
+        }
+        
+        if(!treeOfGame.isLeaf()){
+            System.out.println(treeOfGame.breadthTraversal());
+            LinkedList<String> sheets = treeOfGame.getTreeSheets();
+            
+            for(String s : sheets){
+                if(!(s.contains("?")))
+                    listAnimals.add(s);
+            }
+                
+        }else{
+            if(!(treeOfGame.getRootContent().contains("?")))
+                listAnimals.add(treeOfGame.getRootContent());
+            else{
+                System.out.println("No conocemos a ese animal");
+                return null;
+            }
+                
+        }
+        return listAnimals;
     }
 }
