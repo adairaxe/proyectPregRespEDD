@@ -43,7 +43,7 @@ public class CargaArchivosController implements Initializable {
     @FXML
     private Button bt_cargarRespuestas;
     
-    private String RutaPreguntas;
+    static private String RutaPreguntas;
     private String RutaRespuestas;
     @FXML
     private CheckBox ceck_archivosDefecto;
@@ -85,24 +85,17 @@ public class CargaArchivosController implements Initializable {
             System.out.println(RutaRespuestas);
             System.out.println("LLEGO 1");
             
-            Stage stg = (Stage)lb_nomFilePreguntas.getScene().getWindow();
-            stg.close();
-            
-            FXMLLoader fxmlLoader2 = App.loadFXML("primary"); 
-            Scene sc = new Scene(fxmlLoader2.load());
-            PrimaryController pc = fxmlLoader2.<PrimaryController>getController();
-            
-            pc.setRutaPreguntas(this.getRutaPreguntas());
-            pc.setRutaRespuestas(this.getRutaRespuestas());
-            System.out.println("LLEGO 2");
-            Stage sg = new Stage();
-            sg.setScene(sc);
-            sg.show();
-            
+//            Stage stg = (Stage)lb_nomFilePreguntas.getScene().getWindow();
+//            stg.close();
 
+            PrimaryController.RutaPreguntas = RutaPreguntas;
+            PrimaryController.RutaRespuestas = RutaPreguntas;
             
-//            System.out.println("LLEGO 2");
+            FXMLLoader loader = App.loadFXML("primary");
+            Parent root= loader.load();
             
+            System.out.println("LLEGO 2");
+            App.scene.setRoot(root);
             
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -116,7 +109,7 @@ public class CargaArchivosController implements Initializable {
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         File filePreguntas = fileChooser.showOpenDialog(stage);
-        RutaPreguntas = filePreguntas.getPath();
+        RutaPreguntas = filePreguntas.getAbsolutePath();
         lb_nomFilePreguntas.setText(filePreguntas.getName());
     }
     
@@ -126,7 +119,7 @@ public class CargaArchivosController implements Initializable {
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         File fileRespuestas = fileChooser.showOpenDialog(stage);
-        RutaPreguntas = fileRespuestas.getPath();
+        RutaPreguntas = fileRespuestas.getAbsolutePath();
         lb_nomFileRespuestas.setText(fileRespuestas.getName());
     }
 

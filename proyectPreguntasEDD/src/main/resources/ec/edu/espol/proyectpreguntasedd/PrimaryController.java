@@ -48,8 +48,8 @@ public class PrimaryController implements Initializable {
     private Label txt_notificacion;
     
     private int numMaxPreguntas;
-    private String RutaPreguntas;
-    private String RutaRespuestas;
+    static public String RutaPreguntas;
+    static public String RutaRespuestas;
 
     public void setRutaPreguntas(String RutaPreguntas) {
         this.RutaPreguntas = RutaPreguntas;
@@ -65,6 +65,7 @@ public class PrimaryController implements Initializable {
         try {
             System.out.println(RutaPreguntas);
             System.out.println(RutaRespuestas);
+            
             Adivinador adivinador = new Adivinador();
             System.out.println("Llego 3");
             ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
@@ -73,8 +74,11 @@ public class PrimaryController implements Initializable {
             Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);
             adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
+            
             adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
-            adivinador.chargeAllAnswer();
+//            adivinador.chargeAllAnswer();
+            
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

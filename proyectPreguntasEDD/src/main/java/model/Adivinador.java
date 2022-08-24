@@ -166,7 +166,7 @@ public class Adivinador {
             treeUp.setRight(treeUnder.newcopyBinaryTree());
             stackTreeQuestions.push(treeUp);
         }
-        this.setTreeOfGame(stackTreeQuestions.pop()); 
+        treeOfGame = stackTreeQuestions.pop(); 
     }
     
     
