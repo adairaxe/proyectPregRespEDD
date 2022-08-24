@@ -33,16 +33,17 @@ public class InicioController implements Initializable {
     @FXML
     private Button bt_siguiente;
     
-    private BinaryTree<String> arbolPreguntas;
+    static public BinaryTree<String> arbolPreguntas;
     
     private ArrayList<String> respuestas;
     
-    private int numPreguntas;
+    static public int numPreguntas;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lb_pregunta.setText("Vamos que sí se puede muchachos");
+        lb_pregunta.setText(arbolPreguntas.getRootContent());
+        
     }    
 
     @FXML
@@ -60,13 +61,15 @@ public class InicioController implements Initializable {
         String text;
         if(rbt_no.isSelected() && !rbt_si.isSelected()){     
             text = rbt_no.getText();
-            respuestas.add(text);
+            //respuestas.add(text);
             arbolPreguntas = arbolPreguntas.getRight();
+            lb_pregunta.setText(arbolPreguntas.getRootContent());
         }
         else{
             text = rbt_si.getText();
-            respuestas.add(text);
+            //respuestas.add(text);
             arbolPreguntas = arbolPreguntas.getLeft();
+            lb_pregunta.setText(arbolPreguntas.getRootContent());
         }
         
         lb_pregunta.setText(arbolPreguntas.getRootContent());

@@ -64,7 +64,8 @@ public class PrimaryController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
+         try {
+           
             System.out.println(RutaPreguntas);
             System.out.println(RutaRespuestas);
             
@@ -87,7 +88,7 @@ public class PrimaryController implements Initializable {
         }
     }
     @FXML
-    private void play(){
+    private void play() throws IOException{
         LinkedList<Integer> pr = Util.randomQuestion("preguntas.txt", numMaxPreguntas);
        
         Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions(RutaPreguntas, numMaxPreguntas, pr);
@@ -101,7 +102,14 @@ public class PrimaryController implements Initializable {
         
 //        //se carga las respuestas a las preguntas 
         Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
-        Util.playGame(BinaryTreeQuestion,numMaxPreguntas);
+        
+            InicioController.arbolPreguntas=BinaryTreeQuestion;
+            InicioController.numPreguntas=numMaxPreguntas;
+            
+            FXMLLoader loader = App.loadFXML("inicio");
+            Parent root= loader.load();
+            App.scene.setRoot(root);
+        
     
     
     }
