@@ -54,7 +54,17 @@ public class CargaArchivosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public String getRutaPreguntas() {
+        return RutaPreguntas;
+    }
+
+    public String getRutaRespuestas() {
+        return RutaRespuestas;
+    }
+
+    
     
     
     @FXML
@@ -73,23 +83,27 @@ public class CargaArchivosController implements Initializable {
         try {
             System.out.println(RutaPreguntas);
             System.out.println(RutaRespuestas);
-            Stage stg = (Stage)bt_cargarRespuestas.getScene().getWindow();
-            stg.close();
             System.out.println("LLEGO 1");
-            FXMLLoader fxmlLoader2 = new FXMLLoader(App.class.getResource("primary.fxml"));
+            
+            Stage stg = (Stage)lb_nomFilePreguntas.getScene().getWindow();
+            stg.close();
+            
+            FXMLLoader fxmlLoader2 = App.loadFXML("primary"); 
             Scene sc = new Scene(fxmlLoader2.load());
-            PrimaryController primaryControl = fxmlLoader2.<PrimaryController>getController();
+            PrimaryController pc = fxmlLoader2.<PrimaryController>getController();
             
-            //NO ESTÁ SETEANDO EN LA VENTANA PRIMARY!!!!!
-            primaryControl.setRutaPreguntas(RutaPreguntas);
-            primaryControl.setRutaRespuestas(RutaRespuestas);
-            
-            System.out.println(RutaPreguntas);
-            System.out.println(RutaRespuestas);
-            
+            pc.setRutaPreguntas(this.getRutaPreguntas());
+            pc.setRutaRespuestas(this.getRutaRespuestas());
+            System.out.println("LLEGO 2");
             Stage sg = new Stage();
             sg.setScene(sc);
             sg.show();
+            
+
+            
+//            System.out.println("LLEGO 2");
+            
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

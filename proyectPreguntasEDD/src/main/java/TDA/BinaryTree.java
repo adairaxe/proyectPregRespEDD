@@ -140,22 +140,6 @@ public class BinaryTree<E> {
         return traversal;
     }
     
-//    public LinkedList<E> postOrderTraversalIterative() {
-//        LinkedList<E> traversal = new LinkedList<>();
-//        Stack<BinaryTree<E>> s = new Stack<>();
-//        s.push(this);
-//        BinaryTree<E> tree = s.pop();
-//        while (!tree.isEmpty()) {    
-//            if (tree.getRight()!= null && !tree.getRight().isEmpty()) {
-//                s.push(tree.getRight());
-//            }
-//            if (tree.getLeft() != null && !tree.getLeft().isEmpty()) {
-//                s.push(tree.getLeft());
-//            }
-//            tree = s.pop();
-//        }
-//        return traversal;
-//    }
     
     public LinkedList<E> breadthTraversal() {
         LinkedList<E> traversal = new LinkedList<>();
@@ -452,4 +436,24 @@ public class BinaryTree<E> {
         sheets.toString();
     }
     
+//    
+//    public BinaryTree<E> travelToLimit(int n) {
+//        BinaryTree<E> treeLimit = new BinaryTree<E>();
+//        Stack<BinaryTree<E>> s = new Stack<>();
+//        s.push(this);
+//        
+//        while (!s.isEmpty()) {    
+//            BinaryTree<E> tree = s.pop();
+//            if (!tree.isEmpty()) {
+//                treeLimit = tree;
+//            }
+//            if (tree.getRight()!= null && !tree.getRight().isEmpty()) {
+//                s.push(tree.getRight());
+//            }
+//            if (tree.getLeft() != null && !tree.getLeft().isEmpty()) {
+//                s.push(tree.getLeft());
+//            }
+//        }
+//        return traversal;
+//    }
 }

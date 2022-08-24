@@ -209,8 +209,7 @@ public class Adivinador {
     
     
     
-    public int askNumQuestionsUser ()
-    {
+    public int askNumQuestionsUser (){
         String preguntas;
         Scanner entradaEscaner = new Scanner(System.in);
         do {
@@ -228,4 +227,14 @@ public class Adivinador {
         return Integer.parseInt(preguntas); 
     }
     
+    
+    public BinaryTree<String> travelToN(BinaryTree<String> treeQuestion, String answerUser){
+        BinaryTree<String> treeAdvance = new BinaryTree();
+        if(answerUser.equals("si"))
+            treeAdvance = treeQuestion.getLeft();
+        else
+            treeAdvance = treeQuestion.getRight();
+        return treeAdvance;
+        
+    }
 }
