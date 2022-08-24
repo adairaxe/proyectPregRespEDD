@@ -9,7 +9,9 @@ import TDA.BinaryTree;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.fxml.FXML;
@@ -71,6 +73,7 @@ public class PrimaryController implements Initializable {
             ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
             numMaxPreguntas = createListOfQuestion.size();
             
+            
             Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);
             adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
@@ -83,7 +86,26 @@ public class PrimaryController implements Initializable {
             ex.printStackTrace();
         }
     }
+    @FXML
+    private void play(){
+        LinkedList<Integer> pr = Util.randomQuestion("preguntas.txt", numMaxPreguntas);
+       
+        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions(RutaPreguntas, numMaxPreguntas, pr);
 
+//        se crea el arbol de preguntas
+          BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
+          LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
+//        se crea un mapa con las respuestas
+//        
+        Map<String, Queue<String>> createMapSheets = Util.createMapSheets(RutaRespuestas, numMaxPreguntas, pr);
+        
+//        //se carga las respuestas a las preguntas 
+        Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
+        Util.playGame(BinaryTreeQuestion,numMaxPreguntas);
+    
+    
+    }
+    
     @FXML
     private void disminuir(MouseEvent event) {
         int num = Integer.parseInt(num_preguntas.getText());
