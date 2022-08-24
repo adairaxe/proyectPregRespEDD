@@ -44,7 +44,8 @@ public class CargaArchivosController implements Initializable {
     private Button bt_cargarRespuestas;
     
     static private String RutaPreguntas;
-    private String RutaRespuestas;
+    
+    static private String RutaRespuestas;
     @FXML
     private CheckBox ceck_archivosDefecto;
 
@@ -87,7 +88,7 @@ public class CargaArchivosController implements Initializable {
             
 
             PrimaryController.RutaPreguntas = RutaPreguntas;
-            PrimaryController.RutaRespuestas = RutaPreguntas;
+            PrimaryController.RutaRespuestas = RutaRespuestas;
             
             FXMLLoader loader = App.loadFXML("primary");
             Parent root= loader.load();
@@ -117,7 +118,7 @@ public class CargaArchivosController implements Initializable {
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         File fileRespuestas = fileChooser.showOpenDialog(stage);
-        RutaPreguntas = fileRespuestas.getAbsolutePath();
+        RutaRespuestas = fileRespuestas.getAbsolutePath();
         lb_nomFileRespuestas.setText(fileRespuestas.getName());
     }
 
