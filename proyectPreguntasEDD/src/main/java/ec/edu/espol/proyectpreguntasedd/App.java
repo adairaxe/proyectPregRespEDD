@@ -80,7 +80,8 @@ public class App extends Application {
 
 
 //        Adivinador adivinador = new Adivinador();
-//        List<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
+//        ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
+//        System.out.println(createListOfQuestion);
 //        Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");
 //        adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
 //        
