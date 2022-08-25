@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
    <top>
       <Label text="Adiviandor" textFill="#103c94" BorderPane.alignment="CENTER">
          <font>
@@ -38,7 +38,7 @@
             <Insets right="25.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="lb_pregunta" prefHeight="25.0" prefWidth="350.0">
+            <Label fx:id="lb_pregunta" prefHeight="25.0" prefWidth="347.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
