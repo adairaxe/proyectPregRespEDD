@@ -49,18 +49,22 @@ public class InicioController implements Initializable {
         System.out.println(numPreguntas);
         respuestas = new ArrayList();
         lb_pregunta.setText(arbolPreguntas.getRootContent());
-        
+        if(!rbt_no.isSelected() && !rbt_si.isSelected()){
+            bt_siguiente.setDisable(true);
+        }
         
     }    
 
     @FXML
     private void selec_no(ActionEvent event) {
         rbt_si.setSelected(false);
+        bt_siguiente.setDisable(false);
     }
 
     @FXML
     private void selec_si(ActionEvent event) {
-        rbt_no.setSelected(false);  
+        rbt_no.setSelected(false); 
+        bt_siguiente.setDisable(false);
     }
 
     @FXML
