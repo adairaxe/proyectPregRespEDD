@@ -8,6 +8,7 @@ package ec.edu.espol.proyectpreguntasedd;
 import TDA.BinaryTree;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,8 @@ public class InicioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(numPreguntas);
+        respuestas = new ArrayList();
         lb_pregunta.setText(arbolPreguntas.getRootContent());
         
     }    
@@ -58,23 +61,49 @@ public class InicioController implements Initializable {
 
     @FXML
     private void siguiente_pregunta(ActionEvent event) {
-        String text;
-        if(rbt_no.isSelected() && !rbt_si.isSelected()){     
-            text = rbt_no.getText();
-            //respuestas.add(text);
-            arbolPreguntas = arbolPreguntas.getRight();
-            lb_pregunta.setText(arbolPreguntas.getRootContent());
-        }
-        else{
-            text = rbt_si.getText();
-            //respuestas.add(text);
-            arbolPreguntas = arbolPreguntas.getLeft();
-            lb_pregunta.setText(arbolPreguntas.getRootContent());
-        }
         
-        lb_pregunta.setText(arbolPreguntas.getRootContent());
-        rbt_si.setSelected(false);
-        rbt_no.setSelected(false);
+        if(numPreguntas > 1){
+            String text;
+            if(rbt_no.isSelected() && !rbt_si.isSelected()){     
+                text = rbt_no.getText();
+                System.out.println(text);
+                respuestas.add(text);
+                arbolPreguntas = arbolPreguntas.getRight();
+                lb_pregunta.setText(arbolPreguntas.getRootContent());
+            }
+            else{
+                text = rbt_si.getText();
+                respuestas.add(text);
+                arbolPreguntas = arbolPreguntas.getLeft();
+                lb_pregunta.setText(arbolPreguntas.getRootContent());
+            }
+            System.out.println(respuestas);
+            lb_pregunta.setText(arbolPreguntas.getRootContent());
+            rbt_si.setSelected(false);
+            rbt_no.setSelected(false);
+            
+            numPreguntas--;
+        }else{
+            LinkedList<String> listAnimals = new LinkedList();
+//            lb_pregunta.setText("Used está pensando en: \n");
+            if(!arbolPreguntas.isLeaf()){
+                LinkedList<String> sheets = arbolPreguntas.getTreeSheets();
+
+                for(String s : sheets){
+                    if(!(s.contains("?"))){
+                        lb_pregunta.setText(" ");
+                        lb_pregunta.setText(lb_pregunta.getText() + s + " ");
+                    }
+                }
+                
+                
+            }else{
+                if(!(arbolPreguntas.getRootContent().contains("?")))
+                    listAnimals.add(arbolPreguntas.getRootContent());   
+            }
+        }
+        bt_siguiente.setDisable(true);
+        
     }
     
 }

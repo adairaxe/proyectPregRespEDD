@@ -52,6 +52,7 @@ public class PrimaryController implements Initializable {
     private int numMaxPreguntas;
     static public String RutaPreguntas;
     static public String RutaRespuestas;
+    private BinaryTree<String> treeQuestion;
 
     public void setRutaPreguntas(String RutaPreguntas) {
         this.RutaPreguntas = RutaPreguntas;
@@ -65,8 +66,6 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
-
         try {
 
             Adivinador adivinador = new Adivinador();
@@ -79,6 +78,7 @@ public class PrimaryController implements Initializable {
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
             adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
             adivinador.chargeAllAnswer();
+            treeQuestion = adivinador.getTreeOfGame();
             
             
         } catch (IOException ex) {
@@ -87,29 +87,13 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void play() throws IOException{
-        LinkedList<Integer> pr = Util.randomQuestion("preguntas.txt", numMaxPreguntas);
-       
-        Stack<BinaryTree<String>> createStackQuestions = Util.createStackQuestions(RutaPreguntas, numMaxPreguntas, pr);
+        
+        FXMLLoader loader = App.loadFXML("inicio");
+        InicioController.arbolPreguntas = treeQuestion;
+        InicioController.numPreguntas = Integer.parseInt(num_preguntas.getText());
+        Parent root= loader.load();
+        App.scene.setRoot(root);
 
-//        se crea el arbol de preguntas
-          BinaryTree<String> BinaryTreeQuestion = Util.createBinaryTreeQuestion(createStackQuestions);
-          LinkedList<String> breadthTraversal = BinaryTreeQuestion.breadthTraversal();
-//        se crea un mapa con las respuestas
-//        
-        Map<String, Queue<String>> createMapSheets = Util.createMapSheets(RutaRespuestas, numMaxPreguntas, pr);
-        
-//        //se carga las respuestas a las preguntas 
-        Util.chargeAnimals(BinaryTreeQuestion, createMapSheets);
-        
-            InicioController.arbolPreguntas=BinaryTreeQuestion;
-            InicioController.numPreguntas=numMaxPreguntas;
-            
-            FXMLLoader loader = App.loadFXML("inicio");
-            Parent root= loader.load();
-            App.scene.setRoot(root);
-        
-    
-    
     }
     
     @FXML
