@@ -52,7 +52,6 @@ public class InicioController implements Initializable {
         if(!rbt_no.isSelected() && !rbt_si.isSelected()){
             bt_siguiente.setDisable(true);
         }
-        
     }    
 
     @FXML
@@ -72,6 +71,7 @@ public class InicioController implements Initializable {
         
         if(numPreguntas > 1){
             String text;
+            
             if(rbt_no.isSelected() && !rbt_si.isSelected()){     
                 text = rbt_no.getText();
                 System.out.println(text);
@@ -79,7 +79,7 @@ public class InicioController implements Initializable {
                 arbolPreguntas = arbolPreguntas.getRight();
                 lb_pregunta.setText(arbolPreguntas.getRootContent());
             }
-            else{
+            else {
                 text = rbt_si.getText();
                 respuestas.add(text);
                 arbolPreguntas = arbolPreguntas.getLeft();
@@ -89,7 +89,7 @@ public class InicioController implements Initializable {
             lb_pregunta.setText(arbolPreguntas.getRootContent());
             rbt_si.setSelected(false);
             rbt_no.setSelected(false);
-            
+            bt_siguiente.setDisable(true);
             numPreguntas--;
         }else{
             LinkedList<String> listAnimals = new LinkedList();
@@ -122,6 +122,7 @@ public class InicioController implements Initializable {
                     listAnimals.add(arbolPreguntas.getRootContent());   
             }
         }
+        
         //bt_siguiente.setDisable(true);
         
     }
