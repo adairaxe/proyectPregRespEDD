@@ -89,14 +89,16 @@ public class InicioController implements Initializable {
             numPreguntas--;
         }else{
             LinkedList<String> listAnimals = new LinkedList();
-//            lb_pregunta.setText("Used está pensando en: \n");
+//          lb_pregunta.setText("Used está pensando en: \n");
             if(!arbolPreguntas.isLeaf()){
                 LinkedList<String> sheets = arbolPreguntas.getTreeSheets();
-
+                lb_pregunta.setText("");
                 for(String s : sheets){
                     if(!(s.contains("?"))){
-                        lb_pregunta.setText(" ");
-                        lb_pregunta.setText(s + " ");
+                        System.out.println(s);
+                        
+                        lb_pregunta.setText(lb_pregunta.getText()+ " "
+                                +s + " ");
                         
                     }
                 }
