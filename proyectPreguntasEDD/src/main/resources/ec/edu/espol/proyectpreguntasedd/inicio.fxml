@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
    <top>
-      <Label text="Adiviandor" textFill="#103c94" BorderPane.alignment="CENTER">
+      <Label text="Adivinador" textFill="#103c94" BorderPane.alignment="CENTER">
          <font>
             <Font name="Yu Gothic Light" size="28.0" />
          </font>

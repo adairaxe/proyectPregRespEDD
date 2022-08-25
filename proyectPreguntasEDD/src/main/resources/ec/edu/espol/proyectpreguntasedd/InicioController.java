@@ -125,10 +125,11 @@ public class InicioController implements Initializable {
                         if(!(s.contains("?"))){
                             lb_pregunta.setText(lb_pregunta.getText()+ " " + s + " ");
                         }
-                        if("".equals(lb_pregunta.getText())){
+                        
+                    }
+                    if("".equals(lb_pregunta.getText())){
                             genioError();
                         }
-                    }
                     disable();
                 }else{
                     

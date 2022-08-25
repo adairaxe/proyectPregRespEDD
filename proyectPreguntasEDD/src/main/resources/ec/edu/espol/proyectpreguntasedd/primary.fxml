@@ -33,5 +33,10 @@
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
+      <Label layoutX="126.0" layoutY="71.0" text="Selecciona el número de preguntas que deseas realizar">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
