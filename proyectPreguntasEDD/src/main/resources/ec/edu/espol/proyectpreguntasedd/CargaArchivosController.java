@@ -54,7 +54,8 @@ public class CargaArchivosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODO 
+        blockButton();
     }
 
     public String getRutaPreguntas() {
@@ -110,6 +111,7 @@ public class CargaArchivosController implements Initializable {
         File filePreguntas = fileChooser.showOpenDialog(stage);
         RutaPreguntas = filePreguntas.getAbsolutePath();
         lb_nomFilePreguntas.setText(filePreguntas.getName());
+        blockButton();
     }
     
     
@@ -120,11 +122,27 @@ public class CargaArchivosController implements Initializable {
         File fileRespuestas = fileChooser.showOpenDialog(stage);
         RutaRespuestas = fileRespuestas.getAbsolutePath();
         lb_nomFileRespuestas.setText(fileRespuestas.getName());
+        blockButton();
     }
 
     @FXML
     private void selecionarPorDefecto(ActionEvent event) {
-        
+        if (ceck_archivosDefecto.isSelected()){
+        bt_cargarRespuestas.setDisable(true);
+        bt_cargarPreguntas.setDisable(true);
+        btGuargar.setDisable(false);
+        }else{
+         bt_cargarRespuestas.setDisable(false);
+        bt_cargarPreguntas.setDisable(false);  
+        btGuargar.setDisable(true);
+        }
     }
-    
+    public void blockButton (){
+    if ("archivo de txt".equals(lb_nomFileRespuestas.getText())|| "archivo de txt".equals(lb_nomFilePreguntas.getText())){
+            btGuargar.setDisable(true);
+        }else{
+            btGuargar.setDisable(false);
+            ceck_archivosDefecto.setDisable(true);
+    }
+    }
 }
