@@ -1,54 +1,34 @@
 package ec.edu.espol.proyectpreguntasedd;
-
-import TDA.BinaryTree;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.Stack;
-import model.Adivinador;
-import model.Util;
-import static model.Util.askNumQuestionsUser;
-import static model.Util.chargeAnimals;
-import static model.Util.createMapSheets;
-import static model.Util.playGame;
-
-
 /**
  * JavaFX App
+ * @author grupo 2
  */
 public class App extends Application {
-
     public static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("cargaArchivos").load(), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
-
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml).load());
     }
-
     public static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader;
     }
-
     public static void main(String[] args) throws IOException {
         launch();
 
+    }
+}
+//Esto estaba dentro del main, servía como prueba de consola, no se borra por sentimentalismo
 //        int preguntasPosibles = Util.calculateMaxQuestions("preguntas.txt"); 
 //        
 //        int numQuestions = askNumQuestionsUser((preguntasPosibles));
@@ -97,7 +77,3 @@ public class App extends Application {
 //        
 //        LinkedList<String> animals = adivinador.getAnimals();
 //        System.out.println(animals);
-
-    }
-
-}
