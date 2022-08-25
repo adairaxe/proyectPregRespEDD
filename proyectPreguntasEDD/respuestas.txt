@@ -1,7 +1,23 @@
-oso si si si no no
-leon si si si no no
-delfin si no no si no
-avestruz no no no no no
-perro si si si no si
-gato si si si no si
-ballena si no no si no
+Oso si si si no no no
+Leon si si si no no no
+Delfin si no no si no no
+Avestruz no no no no no si
+Perro si si si no si no
+Gato si si si no si no
+Ballena si no no si no no
+Hamster si si no no si no
+Nutria si si no si no no
+Ornitorrinco si si no si no si
+SerpienteTerrrestre no no si no no si
+SerpienteAcuatica no no si si no si
+Pez no no no si no si
+PezDePecera no no no si si si
+Gallina no no no no si si
+Cocodrilo no si si si no si
+Tortuga no si no si no si
+Loro no no no no si si
+Pinguino no no si si no si
+Mono si no no no no no
+Conejo si si no no si no
+Aguila no no si no no si
+Pato no no no si si si

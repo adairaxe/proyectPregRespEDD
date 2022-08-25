@@ -113,7 +113,7 @@ public class InicioController implements Initializable {
                 if(arbolPreguntas == null){
                     
                     genioError();
-                    disable();
+                    
                 }
                 
                 else if(!arbolPreguntas.isLeaf()){
@@ -130,21 +130,23 @@ public class InicioController implements Initializable {
                     if("".equals(lb_pregunta.getText())){
                             genioError();
                         }
-                    disable();
+                    
                 }else{
                     
                     if(!(arbolPreguntas.getRootContent().contains("?"))){
                         
                         listAnimals.add(arbolPreguntas.getRootContent());   
                         lb_pregunta.setText(arbolPreguntas.getRootContent());
+                        
                     }
 
                     else{
                         
                         genioError();
-                        disable();
+                        
                     }
                 }
+                disable();
                 btJugarDeNuevo.setVisible(true);
             }
         }   
