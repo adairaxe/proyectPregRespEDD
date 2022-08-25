@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.DepthTest;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -111,10 +112,8 @@ public class InicioController implements Initializable {
                 LinkedList<String> listAnimals = new LinkedList();
                 if(arbolPreguntas == null){
                     
-                    imv_genio1.setVisible(false);
-                    lb_pregunta.setText("   No conozco tu animal    ");
-                    Image img = new Image("img/genio2.gif");
-                    imGenioFinal.setImage(img);
+                    genioError();
+                    disable();
                 }
                 
                 else if(!arbolPreguntas.isLeaf()){
@@ -126,8 +125,11 @@ public class InicioController implements Initializable {
                         if(!(s.contains("?"))){
                             lb_pregunta.setText(lb_pregunta.getText()+ " " + s + " ");
                         }
+                        if("".equals(lb_pregunta.getText())){
+                            genioError();
+                        }
                     }
-
+                    disable();
                 }else{
                     
                     if(!(arbolPreguntas.getRootContent().contains("?"))){
@@ -138,10 +140,8 @@ public class InicioController implements Initializable {
 
                     else{
                         
-                        imv_genio1.setVisible(false);
-                        lb_pregunta.setText("   No conozco tu animal    ");
-                        Image img = new Image("img/genio2.gif");
-                        imGenioFinal.setImage(img);
+                        genioError();
+                        disable();
                     }
                 }
                 btJugarDeNuevo.setVisible(true);
@@ -149,7 +149,20 @@ public class InicioController implements Initializable {
         }   
     }
     
-
+    private void disable (){
+      rbt_no.setVisible(false);
+      rbt_no.setDisable(true);
+      rbt_si.setVisible(false);
+      rbt_si.setDisable(true);
+      bt_siguiente.setDisable(true);
+      bt_siguiente.setVisible(false);
+    }
+    private void genioError (){
+        imv_genio1.setVisible(false);
+        lb_pregunta.setText("   No conozco tu animal    ");
+        Image img = new Image("img/genio2.gif");
+        imGenioFinal.setImage(img);
+    }
     @FXML
     private void jugarDeNuevo(ActionEvent event) throws IOException {
         FXMLLoader loader = App.loadFXML("cargaArchivos");
