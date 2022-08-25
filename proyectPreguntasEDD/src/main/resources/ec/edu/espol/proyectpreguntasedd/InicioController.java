@@ -16,6 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Adivinador;
 
 /**
@@ -39,13 +42,14 @@ public class InicioController implements Initializable {
     private ArrayList<String> respuestas;
     
     static public int numPreguntas;
-
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(numPreguntas);
         respuestas = new ArrayList();
         lb_pregunta.setText(arbolPreguntas.getRootContent());
+        
         
     }    
 
@@ -92,17 +96,27 @@ public class InicioController implements Initializable {
                 for(String s : sheets){
                     if(!(s.contains("?"))){
                         lb_pregunta.setText(" ");
-                        lb_pregunta.setText(lb_pregunta.getText() + s + " ");
+                        lb_pregunta.setText(s + " ");
+                        
                     }
                 }
+                String[] animales=lb_pregunta.getText().split(" ");
                 
-                
+                bt_siguiente.setVisible(false);
+                this.rbt_no.setVisible(false);
+                this.rbt_si.setVisible(false);
+                /*
+                for(int i=0 ; i<animales.length ;i++){
+                    System.out.println(i+" "+animales[i]);
+                    
+                }
+                */
             }else{
                 if(!(arbolPreguntas.getRootContent().contains("?")))
                     listAnimals.add(arbolPreguntas.getRootContent());   
             }
         }
-        bt_siguiente.setDisable(true);
+        //bt_siguiente.setDisable(true);
         
     }
     
