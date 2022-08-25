@@ -92,6 +92,20 @@ public class InicioController implements Initializable {
             bt_siguiente.setDisable(true);
             numPreguntas--;
         }else{
+            String text;
+            if(rbt_no.isSelected() && !rbt_si.isSelected()){     
+                text = rbt_no.getText();
+                System.out.println(text);
+                respuestas.add(text);
+                arbolPreguntas = arbolPreguntas.getRight();
+                lb_pregunta.setText(arbolPreguntas.getRootContent());
+            }
+            else {
+                text = rbt_si.getText();
+                respuestas.add(text);
+                arbolPreguntas = arbolPreguntas.getLeft();
+                lb_pregunta.setText(arbolPreguntas.getRootContent());
+            }
             LinkedList<String> listAnimals = new LinkedList();
 //          lb_pregunta.setText("Used está pensando en: \n");
             if(!arbolPreguntas.isLeaf()){
