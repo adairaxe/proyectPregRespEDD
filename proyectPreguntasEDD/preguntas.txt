@@ -1,6 +1,6 @@
-Es este animal un mamifero?
-Se para en cuatro patas?
-Es este animal un carnivoro?
-Es este un animal acuatico?
-Es este un animal domestico?
-Este animal pone huevos?
+¿Es este animal un mamifero?
+¿Se para en cuatro patas?
+¿Es este animal un carnivoro?
+¿Es este un animal acuatico?
+¿Es este un animal domestico?
+¿Este animal pone huevos?

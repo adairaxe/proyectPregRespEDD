@@ -69,11 +69,11 @@ public class PrimaryController implements Initializable {
         try {
 
             Adivinador adivinador = new Adivinador();
-            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion("preguntas.txt");
+            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
             System.out.println(createListOfQuestion);
             
             numMaxPreguntas = createListOfQuestion.size();
-            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer("respuestas.txt");            
+            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);            
             adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
             adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
