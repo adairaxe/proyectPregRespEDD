@@ -42,42 +42,33 @@ public class CargaArchivosController implements Initializable {
     private Label lb_nomFileRespuestas;
     @FXML
     private Button bt_cargarRespuestas;
-    
-    static private String RutaPreguntas;
-    
-    static private String RutaRespuestas;
     @FXML
     private CheckBox ceck_archivosDefecto;
+    
+    static private String RutaPreguntas;
+    static private String RutaRespuestas;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO 
         blockButton();
     }
-
-    public String getRutaPreguntas() {
-        return RutaPreguntas;
-    }
-
-    public String getRutaRespuestas() {
-        return RutaRespuestas;
-    }
-
     
     
     
     @FXML
     private void cancelar(ActionEvent event) {
+        
         Stage stage=(Stage) btCancelar.getScene().getWindow();
         stage.close();
+        
     }
+    
     
     
     @FXML
     private void guardarArchivos(ActionEvent event) {
+        
         if(ceck_archivosDefecto.isSelected()){
             RutaPreguntas = "preguntas.txt";
             RutaRespuestas = "respuestas.txt";
@@ -88,8 +79,8 @@ public class CargaArchivosController implements Initializable {
             System.out.println("LLEGO 1");
             
 
-            PrimaryController.RutaPreguntas = RutaPreguntas;
-            PrimaryController.RutaRespuestas = RutaRespuestas;
+            PrimaryController.RutaPreguntas_primary = RutaPreguntas;
+            PrimaryController.RutaRespuestas_primary = RutaRespuestas;
             
             FXMLLoader loader = App.loadFXML("primary");
             Parent root= loader.load();
@@ -104,29 +95,38 @@ public class CargaArchivosController implements Initializable {
     }
     
     
+    
     @FXML
     private void cargarPreguntas(ActionEvent event) {
+        
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         File filePreguntas = fileChooser.showOpenDialog(stage);
         RutaPreguntas = filePreguntas.getAbsolutePath();
         lb_nomFilePreguntas.setText(filePreguntas.getName());
         blockButton();
+        
     }
+    
     
     
     @FXML
     private void cargarRespuestas(ActionEvent event) {
+        
         FileChooser fileChooser = new FileChooser(); 
         Window stage = null;
         File fileRespuestas = fileChooser.showOpenDialog(stage);
         RutaRespuestas = fileRespuestas.getAbsolutePath();
         lb_nomFileRespuestas.setText(fileRespuestas.getName());
         blockButton();
+        
     }
-
+    
+    
+    
     @FXML
     private void selecionarPorDefecto(ActionEvent event) {
+        
         if (ceck_archivosDefecto.isSelected()){
         bt_cargarRespuestas.setDisable(true);
         bt_cargarPreguntas.setDisable(true);
@@ -135,14 +135,21 @@ public class CargaArchivosController implements Initializable {
          bt_cargarRespuestas.setDisable(false);
         bt_cargarPreguntas.setDisable(false);  
         btGuargar.setDisable(true);
+        
         }
     }
+    
+    
+    
     public void blockButton (){
-    if ("archivo de txt".equals(lb_nomFileRespuestas.getText())|| "archivo de txt".equals(lb_nomFilePreguntas.getText())){
-            btGuargar.setDisable(true);
-        }else{
+        
+        if ("archivo de txt".equals(lb_nomFileRespuestas.getText())|| "archivo de txt".equals(lb_nomFilePreguntas.getText()))
+                btGuargar.setDisable(true);
+        else{
             btGuargar.setDisable(false);
             ceck_archivosDefecto.setDisable(true);
+        }
     }
-    }
+    
+    
 }

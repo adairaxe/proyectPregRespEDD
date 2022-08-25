@@ -23,6 +23,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import model.Adivinador;
 
 /**
@@ -39,12 +42,7 @@ public class InicioController implements Initializable {
     @FXML
     private RadioButton rbt_si;
     @FXML
-    private Button bt_siguiente;
-    
-    static public BinaryTree<String> arbolPreguntas;
-    
-    private ArrayList<String> respuestas;
-    
+    private Button bt_siguiente; 
     static public int numPreguntas;
     @FXML
     private ImageView imGenioFinal;
@@ -52,10 +50,21 @@ public class InicioController implements Initializable {
     private ImageView imv_genio1;
     @FXML
     private Button btJugarDeNuevo;
+    @FXML
+    private VBox vb_principal;
+    
+    static public Adivinador adivinador_Inico;
+    static public String RutaPreguntas_inicio;
+    static public String RutaRespuestas_inicio;
+    
+    static public BinaryTree<String> arbolPreguntas;
+    
+    private ArrayList<String> respuestas;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         btJugarDeNuevo.setVisible(false);
         respuestas = new ArrayList();
         lb_pregunta.setText(arbolPreguntas.getRootContent());
@@ -65,21 +74,24 @@ public class InicioController implements Initializable {
         
     }  
     
-
+    
+    
     @FXML
     private void selec_no(ActionEvent event) {
         rbt_si.setSelected(false);
         bt_siguiente.setDisable(false);
     }
     
-
+    
+    
     @FXML
     private void selec_si(ActionEvent event) {
         rbt_no.setSelected(false); 
         bt_siguiente.setDisable(false);
     }
     
-
+    
+    
     @FXML
     private void siguiente_pregunta(ActionEvent event) {
         if(numPreguntas >= 0){
@@ -111,7 +123,6 @@ public class InicioController implements Initializable {
                 
                 LinkedList<String> listAnimals = new LinkedList();
                 if(arbolPreguntas == null){
-                    
                     genioError();
                     
                 }
@@ -124,8 +135,7 @@ public class InicioController implements Initializable {
                         
                         if(!(s.contains("?"))){
                             lb_pregunta.setText(lb_pregunta.getText()+ " " + s + " ");
-                        }
-                        
+                        }  
                     }
                     if("".equals(lb_pregunta.getText())){
                             genioError();
@@ -133,17 +143,13 @@ public class InicioController implements Initializable {
                     
                 }else{
                     
-                    if(!(arbolPreguntas.getRootContent().contains("?"))){
-                        
+                    if(!(arbolPreguntas.getRootContent().contains("?"))){              
                         listAnimals.add(arbolPreguntas.getRootContent());   
-                        lb_pregunta.setText(arbolPreguntas.getRootContent());
-                        
+                        lb_pregunta.setText(arbolPreguntas.getRootContent()); 
                     }
 
-                    else{
-                        
-                        genioError();
-                        
+                    else{          
+                        genioError();  
                     }
                 }
                 disable();
@@ -152,25 +158,58 @@ public class InicioController implements Initializable {
         }   
     }
     
+    
+    
     private void disable (){
+        
       rbt_no.setVisible(false);
       rbt_no.setDisable(true);
       rbt_si.setVisible(false);
       rbt_si.setDisable(true);
       bt_siguiente.setDisable(true);
       bt_siguiente.setVisible(false);
+      
     }
+    
+    
+    
     private void genioError (){
+        
         imv_genio1.setVisible(false);
-        lb_pregunta.setText("   No conozco tu animal    ");
+        lb_pregunta.setText("No conozco tu animal pero...");
         Image img = new Image("img/genio2.gif");
         imGenioFinal.setImage(img);
+        Button butonAgregarAnimal = new Button();
+        butonAgregarAnimal.setText("Agrega el animal");
+        butonAgregarAnimal.setOnMouseClicked(
+                (MouseEvent e)->
+                    {
+                        try {
+                            
+                            CargaNuevoAnimalController.RutaPreguntas_nuevoAnimal = RutaPreguntas_inicio;
+                            CargaNuevoAnimalController.RutaRespuestas_nuevoAnimal = RutaRespuestas_inicio;
+                            FXMLLoader loader = App.loadFXML("cargaNuevoAnimal");
+                            Parent root = loader.load();
+                            App.scene.setRoot(root);
+                             
+                        } catch (IOException ex) {
+                            
+                            ex.printStackTrace();
+                        }      
+                    }
+        );
+        vb_principal.getChildren().add(butonAgregarAnimal);
     }
+    
+    
+    
     @FXML
     private void jugarDeNuevo(ActionEvent event) throws IOException {
+        
         FXMLLoader loader = App.loadFXML("cargaArchivos");
-        Parent root= loader.load();
+        Parent root = loader.load();
         App.scene.setRoot(root);
+        
     }
     
 }

@@ -67,13 +67,14 @@ public class Adivinador {
         try(    FileReader reader = new FileReader(fileOfQuestions);
                 BufferedReader buff = new BufferedReader(reader);   )
         {
-            ArrayList<String> linkedListQuestion = new ArrayList<String>();
+            ArrayList<String> ListQuestion = new ArrayList<String>();
             String question;
             while ((question = buff.readLine()) != null){
-                linkedListQuestion.add(question);
+                ListQuestion.add(question);
             }
             
-            return linkedListQuestion;
+            listOfQuestions = ListQuestion;
+            return ListQuestion;
             
         } catch (FileNotFoundException ex) {
             return null;
@@ -98,6 +99,8 @@ public class Adivinador {
                 
                 mapAnswers.put(splitAnswers[0], arrayListAnswers);
             }
+            
+            mapOfAnswers = mapAnswers;
             return mapAnswers;
             
         } catch (FileNotFoundException ex) {
@@ -108,8 +111,10 @@ public class Adivinador {
     
     
     private void swapAnswersInMap(Map<String , ArrayList<String>> newMappAnswers , Map<String , ArrayList<String>> oldMapAnswers, int index){
+        
         Set<String> keySet = oldMapAnswers.keySet();
         Iterator<String> iterator = keySet.iterator();
+        
             while(iterator.hasNext()){
                 String next = iterator.next();
                 ArrayList<String> ArrayNew = newMappAnswers.get(next);
@@ -123,12 +128,15 @@ public class Adivinador {
     
     
     public void createListAleatoryOfQuestion(List<String> listOfQuestion , Map<String , ArrayList<String>> mapAnswers){
+        
         List<String> newArraylistQuestions = new ArrayList();  
         Map<String , ArrayList<String>> mapAnswersRandom = new LinkedHashMap();
         mapAnswersRandom.putAll(mapAnswers);
         int numRandom;
         int sizeOrigin = listOfQuestion.size();
+        
         for(int i = 0 ; i < sizeOrigin ; i++){
+            
             while(!listOfQuestion.isEmpty()){
                 numRandom = (int)(Math.random() * 10);
                 if(numRandom < listOfQuestion.size()){
@@ -146,19 +154,23 @@ public class Adivinador {
     
     
     public Stack<BinaryTree<String>> createBinaryTreeQuestion(){
+        
         Stack stack = new Stack();
         LinkedList<String> copyListOfQuestion = new LinkedList();
         copyListOfQuestion.addAll(listOfQuestions);
+        
         while(!copyListOfQuestion.isEmpty()){
             BinaryTree<String> binaryTree = new BinaryTree(copyListOfQuestion.removeFirst());
             stack.push(binaryTree);
         }
         return stack;
+        
     }
     
     
     
-    public void createBinaryTreeRoot(Stack<BinaryTree<String>> stackTreeQuestions){        
+    public void createBinaryTreeRoot(Stack<BinaryTree<String>> stackTreeQuestions){    
+        
         while(stackTreeQuestions.size() > 1){
             BinaryTree<String> treeUnder = stackTreeQuestions.pop();
             BinaryTree<String> treeUp = new BinaryTree(stackTreeQuestions.pop().getRootContent());
@@ -167,11 +179,13 @@ public class Adivinador {
             stackTreeQuestions.push(treeUp);
         }
         this.setTreeOfGame(stackTreeQuestions.pop()); 
+        
     }
     
     
     
     private BinaryTree<String> chargeAnswer(BinaryTree<String> treeQuestion, String animal, ArrayList<String> answersOfMap){
+        
         String remove = answersOfMap.remove(0);
         if(answersOfMap.isEmpty()){
             if(remove.equals("si")){
@@ -199,29 +213,36 @@ public class Adivinador {
     
     
     public void chargeAllAnswer(){
+        
         Set<String> keySet = mapOfAnswers.keySet();
         Iterator<String> iterator = keySet.iterator();
+        
         while(iterator.hasNext()){
             String next = iterator.next();
             this.chargeAnswer(treeOfGame, next, mapOfAnswers.get(next));
         }
+        
     }
     
     
     
     public int askNumQuestionsUser (){
+        
         String preguntas;
         Scanner entradaEscaner = new Scanner(System.in);
         do {
+            
             System.out.println("Puedes seleccionar hasta " + listOfQuestions.size() + " preguntas.");
             System.out.println("Escribe el número de pregunas que deseas relizar: ");
             preguntas = entradaEscaner.nextLine();
             boolean isNumeric =  preguntas.matches("[+-]?\\d*(\\.\\d+)?");
+            
             while(!isNumeric){
                 System.out.println("No es un numero, ingrese un valor correcto: ");
                 preguntas = entradaEscaner.nextLine();
                 isNumeric =  preguntas.matches("[+-]?\\d*(\\.\\d+)?");
             }
+            
         } while ( (Integer.parseInt(preguntas)) > (listOfQuestions.size()) );
         
         return Integer.parseInt(preguntas); 
@@ -229,28 +250,25 @@ public class Adivinador {
     
     
     
-    public int askNumQuestionsUser2(Scanner sc){
-        int numPregUser = sc.nextInt();
-        return numPregUser;
-    }
-    
-    
-    
     private BinaryTree<String> travelToN(BinaryTree<String> treeQuestion, String answerUser){
+        
         if(answerUser.equals("si"))
             treeQuestion = treeQuestion.getLeft();
         else
             treeQuestion = treeQuestion.getRight();
         return treeQuestion;
+        
     }
     
     
     
     private static String ingresarRespuesta (){  
+        
         String respuesta;
         Scanner entradaEscaner = new Scanner (System.in); 
         respuesta = entradaEscaner.nextLine();
         return respuesta;
+        
     }
     
     

@@ -49,55 +49,60 @@ public class PrimaryController implements Initializable {
     
     private Label txt_notificacion;
     
+    private Adivinador adivinadorEnviar;
+    
     private int numMaxPreguntas;
-    static public String RutaPreguntas;
-    static public String RutaRespuestas;
+    static public String RutaPreguntas_primary;
+    static public String RutaRespuestas_primary;
     private BinaryTree<String> treeQuestion;
-
-    public void setRutaPreguntas(String RutaPreguntas) {
-        this.RutaPreguntas = RutaPreguntas;
-    }
-
-    public void setRutaRespuestas(String RutaRespuestas) {
-        this.RutaRespuestas = RutaRespuestas;
-    }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        Adivinador adivinador = new Adivinador();
+        
         try {
-
-            Adivinador adivinador = new Adivinador();
-            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas);
-            System.out.println(createListOfQuestion);
-            
+ 
+            ArrayList<String> createListOfQuestion = adivinador.createListOfQuestion(RutaPreguntas_primary);            
             numMaxPreguntas = createListOfQuestion.size();
-            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas);            
+            Map<String, ArrayList<String>> createMapOfAnswer = adivinador.createMapOfAnswer(RutaRespuestas_primary);            
             adivinador.createListAleatoryOfQuestion(createListOfQuestion, createMapOfAnswer);
             Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador.createBinaryTreeQuestion();
             adivinador.createBinaryTreeRoot(createBinaryTreeQuestion);
             adivinador.chargeAllAnswer();
             treeQuestion = adivinador.getTreeOfGame();
             
+            adivinadorEnviar = adivinador;
             
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+    
+    
+    
     @FXML
     private void play() throws IOException{
         
         FXMLLoader loader = App.loadFXML("inicio");
         InicioController.arbolPreguntas = treeQuestion;
         InicioController.numPreguntas = Integer.parseInt(num_preguntas.getText()) - 1;
+        InicioController.adivinador_Inico = adivinadorEnviar;
+        
+        InicioController.RutaPreguntas_inicio = RutaPreguntas_primary;
+        InicioController.RutaRespuestas_inicio = RutaRespuestas_primary;
+        
         Parent root= loader.load();
         App.scene.setRoot(root);
 
     }
     
+    
+    
     @FXML
     private void disminuir(MouseEvent event) {
+        
         int num = Integer.parseInt(num_preguntas.getText());
         if(!(num == 1)){
             num = num - 1;
@@ -108,7 +113,9 @@ public class PrimaryController implements Initializable {
             a1.show();
         }
     }
-
+    
+    
+    
     @FXML
     private void aumentar(MouseEvent event) {
         int num = Integer.parseInt(num_preguntas.getText());

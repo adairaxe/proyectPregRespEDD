@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
    <top>
       <Label text="Adivinador" textFill="#103c94" BorderPane.alignment="CENTER">
          <font>
@@ -33,7 +33,7 @@
       </ImageView>
    </left>
    <center>
-      <VBox alignment="CENTER" maxHeight="250.0" maxWidth="350.0" prefHeight="250.0" prefWidth="237.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vb_principal" alignment="CENTER" maxHeight="250.0" maxWidth="350.0" prefHeight="250.0" prefWidth="237.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="25.0" />
          </BorderPane.margin>
