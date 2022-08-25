@@ -6,13 +6,16 @@
 package ec.edu.espol.proyectpreguntasedd;
 
 import TDA.BinaryTree;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -42,103 +45,116 @@ public class InicioController implements Initializable {
     private ArrayList<String> respuestas;
     
     static public int numPreguntas;
+    @FXML
+    private ImageView imGenioFinal;
+    @FXML
+    private ImageView imv_genio1;
+    @FXML
+    private Button btJugarDeNuevo;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(numPreguntas);
+        btJugarDeNuevo.setVisible(false);
         respuestas = new ArrayList();
         lb_pregunta.setText(arbolPreguntas.getRootContent());
         if(!rbt_no.isSelected() && !rbt_si.isSelected()){
             bt_siguiente.setDisable(true);
         }
-    }    
+        
+    }  
+    
 
     @FXML
     private void selec_no(ActionEvent event) {
         rbt_si.setSelected(false);
         bt_siguiente.setDisable(false);
     }
+    
 
     @FXML
     private void selec_si(ActionEvent event) {
         rbt_no.setSelected(false); 
         bt_siguiente.setDisable(false);
     }
+    
 
     @FXML
     private void siguiente_pregunta(ActionEvent event) {
-        
-        if(numPreguntas > 1){
+        if(numPreguntas >= 0){
             String text;
             
-            if(rbt_no.isSelected() && !rbt_si.isSelected()){     
+            if(rbt_no.isSelected() && !rbt_si.isSelected()){  
+                
                 text = rbt_no.getText();
                 System.out.println(text);
                 respuestas.add(text);
                 arbolPreguntas = arbolPreguntas.getRight();
-                lb_pregunta.setText(arbolPreguntas.getRootContent());
+//                lb_pregunta.setText(arbolPreguntas.getRootContent());
             }
             else {
+                
                 text = rbt_si.getText();
                 respuestas.add(text);
                 arbolPreguntas = arbolPreguntas.getLeft();
-                lb_pregunta.setText(arbolPreguntas.getRootContent());
             }
-            System.out.println(respuestas);
-            lb_pregunta.setText(arbolPreguntas.getRootContent());
             rbt_si.setSelected(false);
             rbt_no.setSelected(false);
             bt_siguiente.setDisable(true);
             numPreguntas--;
-        }else{
-            String text;
-            if(rbt_no.isSelected() && !rbt_si.isSelected()){     
-                text = rbt_no.getText();
-                System.out.println(text);
-                respuestas.add(text);
-                arbolPreguntas = arbolPreguntas.getRight();
+            
+            if(numPreguntas >= 0)
                 lb_pregunta.setText(arbolPreguntas.getRootContent());
-            }
-            else {
-                text = rbt_si.getText();
-                respuestas.add(text);
-                arbolPreguntas = arbolPreguntas.getLeft();
-                lb_pregunta.setText(arbolPreguntas.getRootContent());
-            }
-            LinkedList<String> listAnimals = new LinkedList();
-//          lb_pregunta.setText("Used está pensando en: \n");
-            if(!arbolPreguntas.isLeaf()){
-                LinkedList<String> sheets = arbolPreguntas.getTreeSheets();
-                lb_pregunta.setText("");
-                for(String s : sheets){
-                    if(!(s.contains("?"))){
-                        System.out.println(s);
+            
+            else{
+                
+                LinkedList<String> listAnimals = new LinkedList();
+                if(arbolPreguntas == null){
+                    
+                    imv_genio1.setVisible(false);
+                    lb_pregunta.setText("   No conozco tu animal    ");
+                    Image img = new Image("img/genio2.gif");
+                    imGenioFinal.setImage(img);
+                }
+                
+                else if(!arbolPreguntas.isLeaf()){
+                    
+                    LinkedList<String> sheets = arbolPreguntas.getTreeSheets();
+                    lb_pregunta.setText("");
+                    for(String s : sheets){
                         
-                        lb_pregunta.setText(lb_pregunta.getText()+ " "
-                                +s + " ");
+                        if(!(s.contains("?"))){
+                            lb_pregunta.setText(lb_pregunta.getText()+ " " + s + " ");
+                        }
+                    }
+
+                }else{
+                    
+                    if(!(arbolPreguntas.getRootContent().contains("?"))){
                         
+                        listAnimals.add(arbolPreguntas.getRootContent());   
+                        lb_pregunta.setText(arbolPreguntas.getRootContent());
+                    }
+
+                    else{
+                        
+                        imv_genio1.setVisible(false);
+                        lb_pregunta.setText("   No conozco tu animal    ");
+                        Image img = new Image("img/genio2.gif");
+                        imGenioFinal.setImage(img);
                     }
                 }
-                String[] animales=lb_pregunta.getText().split(" ");
-                
-                bt_siguiente.setVisible(false);
-                this.rbt_no.setVisible(false);
-                this.rbt_si.setVisible(false);
-                /*
-                for(int i=0 ; i<animales.length ;i++){
-                    System.out.println(i+" "+animales[i]);
-                    
-                }
-                */
-            }else{
-                if(!(arbolPreguntas.getRootContent().contains("?")))
-                    listAnimals.add(arbolPreguntas.getRootContent());   
+                btJugarDeNuevo.setVisible(true);
             }
-        }
-        
-        //bt_siguiente.setDisable(true);
-        
+        }   
+    }
+    
+
+    @FXML
+    private void jugarDeNuevo(ActionEvent event) throws IOException {
+        FXMLLoader loader = App.loadFXML("cargaArchivos");
+        Parent root= loader.load();
+        App.scene.setRoot(root);
     }
     
 }

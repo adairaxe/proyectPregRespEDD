@@ -90,7 +90,7 @@ public class PrimaryController implements Initializable {
         
         FXMLLoader loader = App.loadFXML("inicio");
         InicioController.arbolPreguntas = treeQuestion;
-        InicioController.numPreguntas = Integer.parseInt(num_preguntas.getText());
+        InicioController.numPreguntas = Integer.parseInt(num_preguntas.getText()) - 1;
         Parent root= loader.load();
         App.scene.setRoot(root);
 

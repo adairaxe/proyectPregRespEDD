@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C068D4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.InicioController">
    <top>
       <Label text="Adiviandor" textFill="#103c94" BorderPane.alignment="CENTER">
          <font>
@@ -23,26 +23,26 @@
       </Label>
    </top>
    <left>
-      <ImageView fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="imv_genio1" fitHeight="180.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="25.0" left="20.0" />
          </BorderPane.margin>
          <image>
-            <Image url="@../../../../img/genio.gif" />
+            <Image url="@../../../../img/genio3.gif" />
          </image>
       </ImageView>
    </left>
    <center>
-      <VBox alignment="CENTER" maxHeight="250.0" maxWidth="350.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="250.0" maxWidth="350.0" prefHeight="250.0" prefWidth="237.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="25.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="lb_pregunta" prefHeight="25.0" prefWidth="347.0">
+            <Label fx:id="lb_pregunta" prefHeight="37.0" prefWidth="229.0">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Label>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="75.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="238.0" spacing="75.0">
                <children>
                   <RadioButton fx:id="rbt_no" mnemonicParsing="false" onAction="#selec_no" text="No">
                      <font>
@@ -62,4 +62,21 @@
          </children>
       </VBox>
    </center>
+   <right>
+      <ImageView fx:id="imGenioFinal" fitHeight="240.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="25.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </right>
+   <bottom>
+      <Button fx:id="btJugarDeNuevo" mnemonicParsing="false" onAction="#jugarDeNuevo" text="Jugar de Nuevo" BorderPane.alignment="TOP_CENTER">
+         <BorderPane.margin>
+            <Insets bottom="25.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Yu Gothic Medium" size="18.0" />
+         </font>
+      </Button>
+   </bottom>
 </BorderPane>
