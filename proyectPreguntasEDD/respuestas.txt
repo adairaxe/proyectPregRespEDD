@@ -2,6 +2,6 @@ oso si si si no no
 leon si si si no no
 delfin si no no si no
 avestruz no no no no no
-perro si si si si si
-gato si si si si si
+perro si si si no si
+gato si si si no si
 ballena si no no si no
