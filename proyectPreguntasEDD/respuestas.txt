@@ -21,5 +21,5 @@ Mono si no no no no no
 Conejo si si no no si no
 Aguila no no si no no si
 Pato no no no si si si
-yalaMuchachos si si si si si si 
-confirmaEsaChupa si si si si si no 
+canguro si no si no si no 
+ornitorrinco si si si si si si 

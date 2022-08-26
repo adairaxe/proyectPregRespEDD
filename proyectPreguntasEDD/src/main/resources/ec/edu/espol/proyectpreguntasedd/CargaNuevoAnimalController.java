@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -99,16 +100,19 @@ public class CargaNuevoAnimalController implements Initializable {
             txf_animal.setVisible(true);
             txf_animal.setDisable(false);
             disable();
+            bt_guardar.setDisable(false);
             System.out.println(respuestas_nuevoAnimal);
        
         }else{
-            
             String animal = txf_animal.getText();
             if(animal != null && !animal.equals("")){
                 bt_guardar.setDisable(false);
                 editarArchivoDeRespuestas(RutaRespuestas_nuevoAnimal, animal);
             }
             disable();
+            Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,"Tu animal ha sido guardado");
+            a1.show();
+                        
         }
     }
     
