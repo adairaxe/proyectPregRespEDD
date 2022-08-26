@@ -6,9 +6,12 @@
 package ec.edu.espol.proyectpreguntasedd;
 
 import TDA.BinaryTree;
+import static ec.edu.espol.proyectpreguntasedd.InicioController.arbolPreguntas;
+import static ec.edu.espol.proyectpreguntasedd.InicioController.numPreguntas;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -42,16 +45,17 @@ public class CargaNuevoAnimalController implements Initializable {
     static public String RutaPreguntas_nuevoAnimal;
     static public String RutaRespuestas_nuevoAnimal;
     
+    private BinaryTree<String> treeCargarAnimal;
+    private int numQuestionOfFile;
+    private ArrayList<String> respuestas_nuevoAnimal = new ArrayList();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             
             Adivinador adivinador_CargaNuevoAnimal = new Adivinador();
-            adivinador_CargaNuevoAnimal.createListOfQuestion(RutaPreguntas_nuevoAnimal);
-            adivinador_CargaNuevoAnimal.createMapOfAnswer(RutaRespuestas_nuevoAnimal);
-            Stack<BinaryTree<String>> createBinaryTreeQuestion = adivinador_CargaNuevoAnimal.createBinaryTreeQuestion();
-            adivinador_CargaNuevoAnimal.createBinaryTreeRoot(createBinaryTreeQuestion);
-            adivinador_CargaNuevoAnimal.chargeAllAnswer();
+            ArrayList<String> createListOfQuestion = adivinador_CargaNuevoAnimal.createListOfQuestion(RutaPreguntas_nuevoAnimal);
+            numQuestionOfFile = createListOfQuestion.size();
             
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -62,8 +66,22 @@ public class CargaNuevoAnimalController implements Initializable {
     
     @FXML
     private void guardar(ActionEvent event) {
+        
     }
-
+    
+    
+    private void disable (){
+        
+      rb_no.setVisible(false);
+      rb_no.setDisable(true);
+      rb_si.setVisible(false);
+      rb_si.setDisable(true);
+      bt_guardar.setVisible(false);
+      
+    }
+    
+    
+    
     @FXML
     private void jugarDeNuevo(ActionEvent event) {
     }

@@ -43,7 +43,7 @@ public class InicioController implements Initializable {
     private RadioButton rbt_si;
     @FXML
     private Button bt_siguiente; 
-    static public int numPreguntas;
+    
     @FXML
     private ImageView imGenioFinal;
     @FXML
@@ -56,6 +56,7 @@ public class InicioController implements Initializable {
     static public Adivinador adivinador_Inico;
     static public String RutaPreguntas_inicio;
     static public String RutaRespuestas_inicio;
+    static public int numPreguntas;
     
     static public BinaryTree<String> arbolPreguntas;
     
