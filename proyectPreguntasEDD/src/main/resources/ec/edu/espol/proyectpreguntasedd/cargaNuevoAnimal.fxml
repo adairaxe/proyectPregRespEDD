@@ -4,11 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6DE781;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectpreguntasedd.CargaNuevoAnimalController">
    <center>
@@ -19,14 +19,15 @@
                   <Font name="Yu Gothic Light" size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="txf_animal" maxWidth="200.0" prefHeight="30.0" />
             <HBox alignment="CENTER" maxHeight="50.0" maxWidth="200.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <RadioButton fx:id="rb_si" mnemonicParsing="false" text="si">
+                  <RadioButton fx:id="rb_si" mnemonicParsing="false" onAction="#select_si" text="si">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rb_no" mnemonicParsing="false" text="no">
+                  <RadioButton fx:id="rb_no" mnemonicParsing="false" onAction="#select_no" text="no">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

@@ -99,19 +99,17 @@ public class InicioController implements Initializable {
             String text;
             
             if(rbt_no.isSelected() && !rbt_si.isSelected()){  
-                
                 text = rbt_no.getText();
                 System.out.println(text);
                 respuestas.add(text);
                 arbolPreguntas = arbolPreguntas.getRight();
-//                lb_pregunta.setText(arbolPreguntas.getRootContent());
             }
             else {
-                
                 text = rbt_si.getText();
                 respuestas.add(text);
                 arbolPreguntas = arbolPreguntas.getLeft();
             }
+            
             rbt_si.setSelected(false);
             rbt_no.setSelected(false);
             bt_siguiente.setDisable(true);
